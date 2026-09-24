@@ -1,0 +1,1013 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calculadora Tema 324</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FAF7F2; --surface:#FFFFFF; --cream:#F1E1D1; --cream-2:#F7EDE2;
+  --brown:#573B2C; --gold:#A68664; --gold-soft:#D9C4AC; --ink:#3A2A22;
+  --muted:#7A6556; --line:#E6D8C8; --line-strong:#CDB79E;
+  --on-brown:#FAF7F2; --field:#FFFDF9;
+  --good:#3E7550; --good-bg:#E4F0E6; --warn:#9A6414; --warn-bg:#FBEFD9;
+  --bad:#A33A2E; --bad-bg:#F7E1DD; --info-bg:#F1E1D1;
+  --bar-a:#573B2C; --bar-b:#C4A27C;
+  --shadow:0 1px 2px rgba(87,59,44,.06),0 8px 24px -12px rgba(87,59,44,.18);
+  --display:"Marcellus","Cormorant Garamond",Georgia,serif;
+  --body:"Poppins","Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#1B1411; --surface:#251C17; --cream:#35271F; --cream-2:#2D221C;
+    --brown:#E9D3BC; --gold:#C9A77F; --gold-soft:#6B5440; --ink:#F1E1D1;
+    --muted:#B9A08C; --line:#3C2E26; --line-strong:#5A4536;
+    --on-brown:#1B1411; --field:#1F1713;
+    --good:#8CC79C; --good-bg:#1F3326; --warn:#E8B566; --warn-bg:#3A2B14;
+    --bad:#F09A8C; --bad-bg:#3D211C; --info-bg:#35271F;
+    --bar-a:#C9A77F; --bar-b:#7C6048;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#1B1411; --surface:#251C17; --cream:#35271F; --cream-2:#2D221C;
+  --brown:#E9D3BC; --gold:#C9A77F; --gold-soft:#6B5440; --ink:#F1E1D1;
+  --muted:#B9A08C; --line:#3C2E26; --line-strong:#5A4536;
+  --on-brown:#1B1411; --field:#1F1713;
+  --good:#8CC79C; --good-bg:#1F3326; --warn:#E8B566; --warn-bg:#3A2B14;
+  --bad:#F09A8C; --bad-bg:#3D211C; --info-bg:#35271F;
+  --bar-a:#C9A77F; --bar-b:#7C6048;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:14px;line-height:1.55;font-weight:400}
+h1,h2,h3{font-family:var(--display);font-weight:400;color:var(--brown);text-wrap:balance;margin:0}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- papel timbrado ---------- */
+.strip{height:6px;background:#573B2C}
+.letterhead{padding-inline:16px;border-bottom:1px solid var(--line);background:var(--surface)}
+.letterhead-in{max-width:1240px;margin:0 auto;padding-block:14px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:14px}
+.mono{width:46px;height:46px;border:1px solid var(--gold);display:grid;place-items:center;position:relative}
+.mono::after{content:"";position:absolute;inset:4px;border:1px solid var(--gold-soft)}
+.mono span{font-family:var(--display);font-size:20px;color:var(--brown);letter-spacing:.06em;position:relative;z-index:1}
+.brand-name{font-family:var(--display);color:var(--brown);letter-spacing:.32em;font-size:15px;line-height:1.1}
+.brand-sub{color:var(--gold);letter-spacing:.42em;font-size:10px;margin-top:4px;font-weight:500}
+.tool-tag{text-align:right}
+.tool-tag b{display:block;font-weight:500;color:var(--brown);letter-spacing:.14em;text-transform:uppercase;font-size:11px}
+.tool-tag small{color:var(--muted);font-size:12px}
+
+.wrap{max-width:1240px;margin:0 auto;padding-inline:16px;padding-block:28px 40px}
+.intro{display:grid;gap:10px;max-width:780px;margin-bottom:22px}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.intro h1{font-size:clamp(26px,3.4vw,36px);line-height:1.15}
+.intro p{color:var(--muted);max-width:68ch}
+
+.banner{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between;background:var(--info-bg);border:1px dashed var(--gold);padding:10px 14px;border-radius:6px;margin-bottom:20px}
+.banner p{font-size:13px}
+.banner[data-kind="real"]{background:transparent;border-style:solid;border-color:var(--line)}
+
+.toolbar{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line-strong);background:var(--surface);color:var(--brown);padding:7px 14px;border-radius:4px;cursor:pointer;font-size:13px;font-weight:500;letter-spacing:.02em;transition:background .15s,border-color .15s}
+.btn:hover{border-color:var(--gold);background:var(--cream-2)}
+.btn.primary{background:#573B2C;border-color:#573B2C;color:#FAF7F2}
+.btn.primary:hover{background:#6A4A38}
+.btn.small{padding:4px 10px;font-size:12px}
+.btn.ghost{border-color:transparent;background:transparent;text-decoration:underline;text-underline-offset:3px;padding-inline:4px}
+
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:24px;align-items:start}
+@media (max-width:1020px){.layout{grid-template-columns:minmax(0,1fr)}}
+.col{display:grid;gap:22px;min-width:0}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px}
+.sec-title{display:flex;align-items:baseline;gap:10px;padding-bottom:10px;margin-bottom:16px;border-bottom:1px solid var(--gold-soft)}
+.sec-title .step{font-family:var(--display);color:var(--gold);font-size:18px}
+.sec-title h2{font-size:15px;letter-spacing:.16em;text-transform:uppercase;font-family:var(--body);font-weight:600}
+.sec-title .aside{margin-left:auto;font-size:12px;color:var(--muted)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px 14px}
+.field{display:grid;gap:4px;min-width:0}
+.field label,.field .lbl{font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+.field input,.field select,.field textarea{width:100%;background:var(--field);border:1px solid var(--line-strong);border-radius:4px;padding:7px 9px;min-width:0}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 25%,transparent)}
+.field input.money{text-align:right;font-variant-numeric:tabular-nums}
+.field .hint{font-size:11px;color:var(--muted)}
+.span2{grid-column:span 2}
+@media (max-width:520px){.span2{grid-column:auto}}
+
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:500;padding:2px 9px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
+.chip::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.chip.good{color:var(--good);background:var(--good-bg)}
+.chip.warn{color:var(--warn);background:var(--warn-bg)}
+.chip.bad{color:var(--bad);background:var(--bad-bg)}
+.chip.neutral{color:var(--muted);background:var(--cream-2)}
+
+/* ---------- import ---------- */
+.drop{border:1.5px dashed var(--gold);border-radius:6px;padding:18px;display:grid;gap:8px;justify-items:center;text-align:center;background:var(--cream-2);cursor:pointer;transition:background .15s}
+.drop.over{background:var(--cream)}
+.drop strong{color:var(--brown);font-weight:500}
+.drop small{color:var(--muted)}
+.import-list{display:grid;gap:10px;margin-top:14px}
+.import-item{border:1px solid var(--line);border-radius:6px;padding:12px;display:grid;gap:8px}
+.import-item header{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.import-item header b{font-weight:500;color:var(--brown)}
+.kv{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:4px 14px;font-size:12.5px}
+.kv div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dotted var(--line);padding-block:2px}
+.kv span{color:var(--muted)}
+details.paste{margin-top:12px}
+details.paste summary{cursor:pointer;color:var(--brown);font-size:13px}
+details.paste textarea{width:100%;min-height:110px;margin-top:8px;background:var(--field);border:1px solid var(--line-strong);border-radius:4px;padding:8px;font-size:12px}
+.privacy{font-size:12px;color:var(--muted);margin-top:10px}
+
+/* ---------- exercícios ---------- */
+.years{display:grid;gap:12px}
+.year{border:1px solid var(--line);border-radius:6px;background:var(--surface);overflow:hidden}
+.year[data-off="1"] .year-body{opacity:.55}
+.year-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;background:var(--cream-2);border-bottom:1px solid var(--line)}
+.year-head .ex{font-family:var(--display);font-size:19px;color:var(--brown)}
+.year-head .ac{font-size:12px;color:var(--muted)}
+.year-head .chips{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto;align-items:center}
+.switch{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);cursor:pointer}
+.switch input{accent-color:#573B2C;width:15px;height:15px}
+.year-body{padding:14px;display:grid;gap:12px}
+.year-foot{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--muted);border-top:1px dotted var(--line);padding-top:10px}
+.year-foot b{color:var(--ink);font-weight:500}
+.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:4px;overflow:hidden}
+.seg button{border:0;background:var(--field);padding:6px 10px;font-size:12px;cursor:pointer;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:#573B2C;color:#FAF7F2}
+
+/* ---------- resultado ---------- */
+.result{position:sticky;top:calc(env(safe-area-inset-top,0px) + 14px);display:grid;gap:14px}
+@media (max-width:1020px){.result{position:static}}
+.result-card{background:#573B2C;color:#FAF7F2;border-radius:6px;padding:20px;display:grid;gap:14px;box-shadow:var(--shadow)}
+:root[data-theme="dark"] .result-card{background:#2E211A;border:1px solid #5A4536}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .result-card{background:#2E211A;border:1px solid #5A4536}}
+.result-card .lbl{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#D9C4AC}
+.big{font-family:var(--display);font-size:clamp(30px,4vw,38px);line-height:1.05;font-variant-numeric:tabular-nums;color:#FAF7F2}
+.result-card .rule{height:1px;background:#A68664;opacity:.6}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.kpis .v{font-size:17px;font-weight:500;font-variant-numeric:tabular-nums;color:#FAF7F2}
+.kpis .s{font-size:11px;color:#D9C4AC}
+.result-card .chips{display:flex;gap:6px;flex-wrap:wrap}
+.result-card .chip.good{background:#E4F0E6;color:#2F5F3E}
+.result-card .chip.warn{background:#FBEFD9;color:#7F520F}
+.result-card .chip.bad{background:#F7E1DD;color:#8E2F25}
+.result-card .chip.neutral{background:rgba(250,247,242,.14);color:#F1E1D1}
+
+.chart{display:grid;gap:8px}
+.bar-row{display:grid;grid-template-columns:52px minmax(0,1fr) 92px;gap:8px;align-items:center;font-size:12px}
+.bar-row .y{color:var(--muted)}
+.bar-track{height:14px;background:var(--cream-2);border-radius:2px;display:flex;overflow:hidden}
+.bar-track i{display:block;height:100%}
+.bar-track i.a{background:var(--bar-a)}
+.bar-track i.b{background:var(--bar-b)}
+.bar-row .v{text-align:right;font-variant-numeric:tabular-nums}
+.bar-row.off .y,.bar-row.off .v{text-decoration:line-through;opacity:.6}
+.legend{display:flex;gap:14px;font-size:11.5px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;display:inline-block;border-radius:2px}
+
+.alerts{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.alerts li{font-size:12.5px;padding:8px 10px;border-radius:4px;border-left:3px solid var(--warn);background:var(--warn-bg);color:var(--ink)}
+.alerts li.bad{border-left-color:var(--bad);background:var(--bad-bg)}
+.alerts li.info{border-left-color:var(--gold);background:var(--cream-2)}
+
+/* ---------- tabelas ---------- */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
+th{background:#573B2C;color:#FAF7F2;font-weight:500;text-align:right;padding:8px 10px;white-space:nowrap;font-size:11.5px;letter-spacing:.03em}
+th:first-child,td:first-child{text-align:left}
+td{padding:7px 10px;border-top:1px solid var(--line);text-align:right;white-space:nowrap}
+tr.off td{color:var(--muted);text-decoration:line-through}
+tfoot td{font-weight:600;background:var(--cream-2);color:var(--brown)}
+.memo{display:grid;gap:10px;margin-top:14px}
+.memo details{border:1px solid var(--line);border-radius:6px;padding:10px 14px;background:var(--surface)}
+.memo summary{cursor:pointer;color:var(--brown);font-weight:500}
+.memo pre{white-space:pre-wrap;font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;font-size:12px;line-height:1.6;margin:10px 0 0;color:var(--ink)}
+
+.selic-grid input{width:62px;text-align:right;padding:4px 6px;border:1px solid var(--line-strong);border-radius:3px;background:var(--field);font-variant-numeric:tabular-nums}
+.selic-grid input.est{border-style:dashed;border-color:var(--warn);background:var(--warn-bg)}
+.selic-grid td{padding:4px 5px}
+.selic-grid th{text-align:center}
+.params{display:grid;gap:18px}
+.params h3{font-size:14px;letter-spacing:.14em;text-transform:uppercase;font-family:var(--body);font-weight:600}
+.note{font-size:12px;color:var(--muted)}
+
+.fund{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.fund h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-family:var(--body);font-weight:600;margin-bottom:8px}
+.fund ul{margin:0;padding-left:18px;display:grid;gap:5px;font-size:13px}
+.fund li::marker{color:var(--gold)}
+
+.foot{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;display:grid;gap:10px;justify-items:center;text-align:center}
+.foot .gold-line{width:66%;height:1px;background:var(--gold)}
+.foot p{font-size:12px;color:var(--brown)}
+.foot small{color:var(--muted);font-size:11.5px;max-width:80ch}
+
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);transform:translateX(-50%);background:#3A2A22;color:#FAF7F2;padding:9px 16px;border-radius:4px;font-size:13px;box-shadow:var(--shadow);z-index:10}
+.copy-area{width:100%;min-height:120px;margin-top:10px;font-size:12px;background:var(--field);border:1px solid var(--line-strong);border-radius:4px;padding:8px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<div class="strip"></div>
+<header class="letterhead">
+  <div class="letterhead-in">
+    <div class="brand">
+      <div class="mono" aria-hidden="true"><span>NT</span></div>
+      <div>
+        <div class="brand-name">NAYARA TONETE</div>
+        <div class="brand-sub">ADVOGADA</div>
+      </div>
+    </div>
+    <div class="tool-tag">
+      <b>Uso interno · Direitos PcD</b>
+      <small>Módulo 1 · Dedução integral da escola no IRPF (Tema 324 TNU)</small>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <span class="eyebrow">Calculadora de restituição</span>
+    <h1>Quanto o cliente pagou a mais de IR com a escola da pessoa com deficiência</h1>
+    <p>Informe os dados de cada exercício ou importe o PDF das declarações. A calculadora refaz o imposto pela tabela progressiva de cada ano com a dedução integral da escola como despesa médica, verifica o prazo de 5 anos (CTN, art. 168, I) e corrige cada diferença pela Selic (Lei 9.250/1995, art. 39, § 4º).</p>
+  </section>
+
+  <div class="banner" id="banner" data-kind="example">
+    <p id="bannerText"><b>Dados de exemplo.</b> Os valores abaixo são fictícios e servem só para mostrar o cálculo. Use “Novo caso” para começar com os dados do cliente.</p>
+    <div class="toolbar">
+      <button class="btn primary" id="btnNew" type="button">Novo caso</button>
+      <button class="btn" id="btnExample" type="button">Carregar exemplo</button>
+      <button class="btn" id="btnExportCase" type="button">Copiar dados do caso</button>
+      <label class="btn" for="caseFile">Abrir dados salvos</label>
+      <input type="file" id="caseFile" accept=".json,application/json,text/plain" hidden>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="col">
+
+      <!-- 1. CASO -->
+      <section class="panel" aria-labelledby="t-caso">
+        <div class="sec-title"><span class="step">1</span><h2 id="t-caso">Caso</h2><span class="aside">Triagem e parâmetros do cálculo</span></div>
+        <div class="grid">
+          <div class="field"><label for="cliente">Cliente (declarante)</label><input id="cliente" type="text" autocomplete="off"></div>
+          <div class="field"><label for="dependente">Pessoa com deficiência</label><input id="dependente" type="text" autocomplete="off" placeholder="Ex.: filho(a), titular"></div>
+          <div class="field span2"><label for="condicao">Condição</label>
+            <select id="condicao">
+              <option value="tea">TEA (autismo) · Lei 12.764/2012</option>
+              <option value="intelectual">Síndrome de Down / deficiência intelectual</option>
+              <option value="fisica">Deficiência física, paralisia cerebral ou múltipla</option>
+              <option value="visual">Deficiência visual (inclui visão monocular)</option>
+              <option value="auditiva">Deficiência auditiva / surdez</option>
+              <option value="fibro">Fibromialgia e condições correlatas</option>
+              <option value="tdah">TDAH, dislexia ou transtorno de aprendizagem</option>
+              <option value="sem">Condição temporária ou sem laudo</option>
+            </select>
+            <span class="hint" id="condHint"></span>
+          </div>
+          <div class="field"><label for="laudo">Data do laudo / diagnóstico</label><input id="laudo" type="date"></div>
+          <div class="field"><label for="ajuizamento">Data prevista do ajuizamento</label><input id="ajuizamento" type="date"><span class="hint">Marco do prazo de 5 anos</span></div>
+          <div class="field"><label for="database">Corrigir até (mês)</label><input id="database" type="month"><span class="hint">Mês da atualização pela Selic</span></div>
+          <div class="field"><label for="marginal">Alíquota para estimativa rápida</label>
+            <select id="marginal">
+              <option value="0.275">27,5%</option><option value="0.225">22,5%</option><option value="0.15">15%</option><option value="0.075">7,5%</option>
+            </select>
+            <span class="hint">Usada só no exercício sem rendimentos informados</span>
+          </div>
+          <div class="field"><label for="salmin">Salário mínimo vigente (R$)</label><input id="salmin" class="money" type="text" inputmode="decimal"><span class="hint">Teto do JEF = 60 salários (conferir)</span></div>
+          <div class="field"><label class="lbl" for="vincendo">Valor da causa</label>
+            <label class="switch" style="padding-top:6px"><input type="checkbox" id="vincendo"> Somar 1 exercício futuro estimado</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. IMPORTAR -->
+      <section class="panel" aria-labelledby="t-imp">
+        <div class="sec-title"><span class="step">2</span><h2 id="t-imp">Importar declarações</h2><span class="aside">Opcional</span></div>
+        <label class="drop" id="drop" for="pdfFile">
+          <strong>Arraste aqui os PDFs das declarações de IRPF</strong>
+          <small>Um ou mais arquivos, de preferência o PDF “Declaração” impresso pelo programa da Receita ou baixado do e-CAC. O exercício é reconhecido automaticamente.</small>
+          <span class="btn small">Escolher arquivos</span>
+        </label>
+        <input type="file" id="pdfFile" accept="application/pdf,.pdf,.txt" multiple hidden>
+        <details class="paste">
+          <summary>O PDF não foi lido? Cole o texto do resumo da declaração</summary>
+          <textarea id="pasteText" placeholder="Abra o PDF, selecione tudo (Ctrl+A), copie e cole aqui."></textarea>
+          <button class="btn small" type="button" id="btnParsePaste" style="margin-top:8px">Ler texto colado</button>
+        </details>
+        <div class="import-list" id="importList"></div>
+        <p class="privacy">Os arquivos são lidos só neste navegador. Nenhum dado da declaração ou do laudo sai do computador (LGPD, art. 11). O arquivo .DEC do programa não é lido; use o PDF.</p>
+      </section>
+
+      <!-- 3. EXERCÍCIOS -->
+      <section aria-labelledby="t-ex">
+        <div class="panel" style="padding-bottom:14px">
+          <div class="sec-title" style="margin-bottom:10px"><span class="step">3</span><h2 id="t-ex">Exercícios</h2><span class="aside">Valores anuais da declaração</span></div>
+          <p class="note">“Deduções” é o total de deduções legais do modelo completo (previdência, dependentes, instrução, médicas, pensão, PGBL etc.). No modelo simplificado, informe as deduções que a família teria se usasse o completo. A despesa escolar é o total pago no ano à escola da pessoa com deficiência, conforme a declaração anual de quitação da escola.</p>
+        </div>
+        <div class="years" id="years" style="margin-top:12px"></div>
+      </section>
+    </div>
+
+    <!-- RESULTADO -->
+    <aside class="result" aria-label="Resultado">
+      <div class="result-card">
+        <div>
+          <div class="lbl">Restituição estimada com Selic</div>
+          <div class="big" id="rTotal">R$ 0,00</div>
+        </div>
+        <div class="rule"></div>
+        <div class="kpis">
+          <div><div class="s">Diferença de imposto (nominal)</div><div class="v" id="rNominal">R$ 0,00</div></div>
+          <div><div class="s">Correção pela Selic</div><div class="v" id="rSelic">R$ 0,00</div></div>
+          <div><div class="s">Valor da causa</div><div class="v" id="rCausa">R$ 0,00</div></div>
+          <div><div class="s">Economia anual futura</div><div class="v" id="rFuturo">R$ 0,00</div></div>
+        </div>
+        <div class="chips" id="rChips"></div>
+      </div>
+
+      <div class="panel" style="padding:16px">
+        <div class="chart" id="chart"></div>
+        <div class="legend" style="margin-top:10px"><span><i style="background:var(--bar-a)"></i>Diferença nominal</span><span><i style="background:var(--bar-b)"></i>Selic</span></div>
+      </div>
+
+      <ul class="alerts" id="alerts"></ul>
+
+      <div class="toolbar">
+        <button class="btn primary" type="button" id="btnCopyMemo">Copiar memória de cálculo</button>
+        <button class="btn" type="button" id="btnCopyTable">Copiar planilha</button>
+      </div>
+      <textarea class="copy-area" id="copyFallback" hidden readonly></textarea>
+    </aside>
+  </div>
+
+  <!-- DETALHAMENTO -->
+  <section class="panel" style="margin-top:24px" aria-labelledby="t-det">
+    <div class="sec-title"><span class="step">4</span><h2 id="t-det">Detalhamento por exercício</h2><span class="aside">Base da planilha da inicial</span></div>
+    <div class="tbl-wrap"><table id="detail"></table></div>
+    <div class="memo" id="memo"></div>
+  </section>
+
+  <!-- PARÂMETROS -->
+  <section class="panel" style="margin-top:24px" aria-labelledby="t-par">
+    <div class="sec-title"><span class="step">5</span><h2 id="t-par">Parâmetros</h2><span class="aside">Tabelas do IRPF e Selic mensal</span></div>
+    <div class="params">
+      <div>
+        <h3>Tabelas anuais do IRPF (base de cálculo anual)</h3>
+        <p class="note" style="margin:6px 0 10px">Limite de instrução: R$ 3.561,50 por pessoa. Desconto simplificado: 20% dos rendimentos tributáveis, limitado ao valor de cada ano. Conferir com a tabela oficial antes de usar em peça.</p>
+        <div class="tbl-wrap"><table id="irTables"></table></div>
+      </div>
+      <div>
+        <h3>Selic mensal (% ao mês)</h3>
+        <p class="note" style="margin:6px 0 10px">Correção: soma simples da Selic mensal a partir do mês seguinte ao pagamento indevido até o mês anterior ao da atualização, mais 1% no mês da atualização (Lei 9.250/1995, art. 39, § 4º). Células tracejadas são estimativas e devem ser substituídas pela série oficial do Banco Central (série SGS 4390). Todas as células podem ser editadas.</p>
+        <div class="toolbar" style="margin-bottom:10px">
+          <button class="btn small" type="button" id="btnFetchSelic">Buscar no Banco Central</button>
+          <label class="btn small" for="selicFile">Importar arquivo da série 4390</label>
+          <input type="file" id="selicFile" accept=".json,.csv,.txt" hidden>
+          <a class="btn small ghost" href="https://api.bcb.gov.br/dados/serie/bcdata.sgs.4390/dados?formato=json&amp;dataInicial=01/01/2020" target="_blank" rel="noopener">Abrir série oficial (JSON)</a>
+          <button class="btn small ghost" type="button" id="btnResetSelic">Restaurar valores padrão</button>
+        </div>
+        <p class="note" id="selicStatus"></p>
+        <div class="tbl-wrap selic-grid"><table id="selicTable"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNDAMENTOS -->
+  <section class="panel" style="margin-top:24px" aria-labelledby="t-fund">
+    <div class="sec-title"><span class="step">6</span><h2 id="t-fund">Fundamentos e cautelas</h2></div>
+    <div class="fund">
+      <div>
+        <h3>Base do cálculo</h3>
+        <ul>
+          <li>TNU, Tema 324 (PEDILEF 0514628-40.2021.4.05.8013): gastos com instrução de pessoa com deficiência física, mental ou cognitiva são integralmente dedutíveis como despesa médica, mesmo em escola regular.</li>
+          <li>Lei 9.250/1995, art. 8º, II, “a” e “b”; RIR/2018, art. 73, § 3º.</li>
+          <li>CTN, arts. 165 e 168, I; LC 118/2005: repetição em 5 anos.</li>
+          <li>Lei 9.250/1995, art. 39, § 4º: correção pela Selic.</li>
+          <li>Lei 10.259/2001: JEF até 60 salários mínimos.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Riscos a comunicar</h3>
+        <ul>
+          <li>Receita Federal não aceita na via administrativa (SC DISIT/SRRF03 nº 3.015/2024). Declarar a dedução sem decisão gera glosa e multa de 75%.</li>
+          <li>Tema 324 não é precedente do STJ ou do STF; a União pode recorrer.</li>
+          <li>Deficiência sensorial, fibromialgia, TDAH e dislexia têm risco maior.</li>
+          <li>Anos anteriores ao laudo ficam frágeis.</li>
+          <li>Material, uniforme, transporte e alimentação têm tese menos firme; separar pedidos.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Documentos para conferir o cálculo</h3>
+        <ul>
+          <li>Declarações de IRPF e recibos de entrega dos exercícios pedidos.</li>
+          <li>Declaração anual de quitação da escola (CNPJ, valores, período) e contrato.</li>
+          <li>Laudo com CID, data e caráter de longo prazo.</li>
+          <li>Relatório multiprofissional e declaração de inclusão da escola (PEI/PDI).</li>
+          <li>Se pais separados: quem declara o dependente e em nome de quem estão os recibos.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="gold-line"></div>
+    <p>NT Advocacia · Nayara Tonete Advogada · OAB/SP 479.459 · WhatsApp (31) 99693-6688 · @nayaratonete.adv</p>
+    <small>Estimativa para triagem interna, sujeita à validação da advogada responsável. Não é promessa de resultado nem de valor. O valor real depende da decisão judicial e do cálculo em cumprimento de sentença.</small>
+  </footer>
+</main>
+
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ================= Parâmetros ================= */
+// Tabela progressiva anual por ano-calendário: [limite superior, alíquota, parcela a deduzir]
+const TAB_2020 = {faixas:[[22847.76,0,0],[33919.80,.075,1713.58],[45012.60,.15,4257.57],[55976.16,.225,7633.51],[Infinity,.275,10432.32]], simp:16754.34};
+const IR = {
+  2020: TAB_2020, 2021: TAB_2020, 2022: TAB_2020,
+  2023: {faixas:[[24511.92,0,0],[33919.80,.075,1838.39],[45012.60,.15,4382.38],[55976.16,.225,7758.32],[Infinity,.275,10557.13]], simp:16754.34},
+  2024: {faixas:[[26963.20,0,0],[33919.80,.075,2022.24],[45012.60,.15,4566.23],[55976.16,.225,7942.17],[Infinity,.275,10740.98]], simp:16754.34},
+  2025: {faixas:[[28467.20,0,0],[33919.80,.075,2135.04],[45012.60,.15,4679.03],[55976.16,.225,8054.97],[Infinity,.275,10853.78]], simp:16754.34}
+};
+const LIMITE_INSTRUCAO = 3561.50;
+// Prazo final de entrega (usado como data do pagamento indevido; editável por exercício)
+const PRAZO = {2021:"2021-05-31",2022:"2022-05-31",2023:"2023-05-31",2024:"2024-05-31",2025:"2025-05-30",2026:"2026-05-29"};
+
+// Selic mensal (% a.m.), série SGS 4390. Meses de 2026 marcados como estimativa.
+const SELIC_DEFAULT = {
+  2020:[0.38,0.29,0.34,0.28,0.24,0.21,0.19,0.16,0.16,0.16,0.15,0.16],
+  2021:[0.15,0.13,0.20,0.21,0.27,0.31,0.36,0.43,0.44,0.49,0.59,0.77],
+  2022:[0.73,0.76,0.93,0.83,1.03,1.02,1.03,1.17,1.07,1.02,1.02,1.12],
+  2023:[1.12,0.92,1.17,0.92,1.12,1.07,1.07,1.14,0.97,1.00,0.92,0.89],
+  2024:[0.97,0.80,0.83,0.89,0.83,0.79,0.91,0.87,0.84,0.93,0.79,0.93],
+  2025:[1.01,0.99,0.96,1.06,1.14,1.10,1.28,1.16,1.22,1.28,1.05,1.22],
+  2026:[1.16,1.00,1.21,1.08,1.10,1.12,1.22,1.09,null,null,null,null]
+};
+const SELIC_EST_DEFAULT = {"2026":[0,1,2,3,4,5,6,7]};
+
+const COND = {
+  tea:{f:"Alta",k:"good",t:"PcD para todos os efeitos legais (Lei 12.764/2012, art. 1º, § 2º). Maioria das decisões recentes."},
+  intelectual:{f:"Alta",k:"good",t:"Dentro da literalidade do Tema 324 (deficiência mental ou cognitiva)."},
+  fisica:{f:"Alta",k:"good",t:"Expressamente citada no RIR e no Tema 324."},
+  visual:{f:"Média-alta",k:"warn",t:"Sensorial: o Tema 324 não cita; argumentar pelo conceito da LBI, art. 2º, e Lei 14.126/2021."},
+  auditiva:{f:"Média-alta",k:"warn",t:"Sensorial: argumentar pelo conceito da LBI, art. 2º."},
+  fibro:{f:"Baixa-média",k:"warn",t:"Equiparação condicionada a avaliação biopsicossocial (Lei 15.176/2025)."},
+  tdah:{f:"Baixa",k:"bad",t:"Não equiparada à deficiência. Só com prova de impedimento de longo prazo; alto risco."},
+  sem:{f:"Inviável",k:"bad",t:"Sem laudo ou sem caráter de longo prazo não há deficiência para a lei."}
+};
+
+/* ================= Utilidades ================= */
+const $ = s => document.querySelector(s);
+const brl = new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"});
+const n2 = new Intl.NumberFormat("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
+const n4 = new Intl.NumberFormat("pt-BR",{minimumFractionDigits:4,maximumFractionDigits:4});
+const fmt = v => brl.format(v||0);
+const r2 = v => Math.round((v+Number.EPSILON)*100)/100;
+function parseMoney(s){
+  if(s==null) return null;
+  if(typeof s==="number") return s;
+  s=String(s).replace(/R\$|\s/g,"").trim();
+  if(!s) return null;
+  if(s.includes(",")) s=s.replace(/\./g,"").replace(",",".");
+  const v=parseFloat(s);
+  return isFinite(v)?v:null;
+}
+const moneyStr = v => (v==null||v==="")?"":n2.format(v);
+function dateBR(iso){ if(!iso) return "—"; const [y,m,d]=iso.split("-"); return d+"/"+m+"/"+y; }
+function addYears(iso,k){ const d=new Date(iso+"T12:00:00"); d.setFullYear(d.getFullYear()+k); return d; }
+function isoOf(d){ return d.toISOString().slice(0,10); }
+const MESES=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+function esc(s){ return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.hidden=false; clearTimeout(toast._t); toast._t=setTimeout(()=>t.hidden=true,2600); }
+
+/* ================= Selic ================= */
+let SELIC = JSON.parse(JSON.stringify(SELIC_DEFAULT));
+let SELIC_EST = JSON.parse(JSON.stringify(SELIC_EST_DEFAULT));
+try{
+  const saved = localStorage.getItem("nt-selic-v1");
+  if(saved){ const o=JSON.parse(saved); if(o&&o.s){ SELIC=o.s; SELIC_EST=o.e||{}; } }
+}catch(e){}
+function saveSelic(){ try{ localStorage.setItem("nt-selic-v1",JSON.stringify({s:SELIC,e:SELIC_EST})); }catch(e){} }
+function selicRate(y,m){ const row=SELIC[y]; return row? row[m] : null; }
+function isEst(y,m){ return (SELIC_EST[y]||[]).includes(m); }
+function lastKnown(){
+  const ys=Object.keys(SELIC).map(Number).sort((a,b)=>b-a);
+  for(const y of ys){ for(let m=11;m>=0;m--){ const v=SELIC[y][m]; if(v!=null&&v!=="") return {y,m,v:+v}; } }
+  return {y:2020,m:0,v:1};
+}
+// Fator = 1 + (soma Selic do mês seguinte ao pagamento até o mês anterior à atualização + 1%)/100
+function selicFactor(payISO, baseYM){
+  const res={fator:1,soma:0,meses:0,faltantes:0,estimados:0,de:null,ate:null};
+  if(!payISO||!baseYM) return res;
+  const [py,pm]=payISO.split("-").map(Number);
+  const [by,bm]=baseYM.split("-").map(Number);
+  let y=py, m=pm; // mês seguinte (m em base 1 → índice m)
+  const endIdx = by*12+(bm-1);
+  let idx = py*12+(pm-1)+1;
+  if(endIdx<idx){ return res; }
+  const lk=lastKnown();
+  res.de=idx; res.ate=endIdx-1;
+  for(let i=idx;i<endIdx;i++){
+    const yy=Math.floor(i/12), mm=i%12;
+    let v=selicRate(yy,mm);
+    if(v==null||v===""){ v=lk.v; res.faltantes++; }
+    else if(isEst(yy,mm)) res.estimados++;
+    res.soma+= +v; res.meses++;
+  }
+  res.soma=Math.round(res.soma*100)/100;
+  res.fator=1+(res.soma+1)/100;
+  return res;
+}
+function ymLabel(i){ return MESES[i%12]+"/"+Math.floor(i/12); }
+
+/* ================= Cálculo do IR ================= */
+function irAnual(ac, base){
+  const t=IR[ac]; if(!t) return null;
+  if(base<=0) return 0;
+  for(const [lim,r,d] of t.faixas){ if(base<=lim) return r2(Math.max(0,base*r-d)); }
+  return 0;
+}
+function faixaDe(ac, base){ const t=IR[ac]; if(!t||base<=0) return 0; for(const [lim,r] of t.faixas){ if(base<=lim) return r; } return .275; }
+
+/* ================= Estado ================= */
+const EXS=[2021,2022,2023,2024,2025,2026];
+function blankYear(ex){ return {ex, ac:ex-1, incluir:true, modelo:"completa", R:null, D:null, Ed:null, E:null, IDd:null, pagamento:PRAZO[ex]}; }
+function todayISO(){ const d=new Date(); d.setMinutes(d.getMinutes()-d.getTimezoneOffset()); return d.toISOString().slice(0,10); }
+function blankCase(){
+  return {example:false, cliente:"", dependente:"", condicao:"tea", laudo:"", ajuizamento:todayISO(), database:todayISO().slice(0,7), marginal:"0.275", salmin:1621, vincendo:false, anos:EXS.map(blankYear)};
+}
+function exampleCase(){
+  const c=blankCase(); c.example=true;
+  c.cliente="Cliente fictício (exemplo)"; c.dependente="Filho, 10 anos (exemplo)"; c.condicao="tea"; c.laudo="2019-08-12"; c.vincendo=true;
+  const data={2021:[168000,24800,26400],2022:[175000,26100,28800],2023:[184000,27300,31200],2024:[192500,28900,33600],2025:[201000,30200,36000],2026:[212000,31500,38400]};
+  c.anos.forEach(a=>{ const d=data[a.ex]; a.R=d[0]; a.D=d[1]; a.Ed=LIMITE_INSTRUCAO; a.E=d[2]; });
+  c.anos.find(a=>a.ex===2023).modelo="completa";
+  return c;
+}
+let S = exampleCase();
+
+/* ================= Cálculo por exercício ================= */
+function calcYear(a){
+  const out={a, modo:null, A:0, diff:0, capped:false, T0:null, T1:null, Ts:null, Tc0:null, Tc1:null, melhor:null, faixa:0, sel:null, corrigido:0, status:"ok", avisos:[]};
+  const E=a.E||0, Ed=a.Ed||0;
+  out.A = r2(Math.max(0,E-Ed));
+  const t=IR[a.ac];
+  const marg=parseFloat(S.marginal);
+  if(a.R>0 && t){
+    out.modo="tabela";
+    const R=a.R, D=a.D||0;
+    const desc=r2(Math.min(R*.2,t.simp));
+    out.desc=desc;
+    out.Ts=irAnual(a.ac,R-desc);
+    out.Tc0=irAnual(a.ac,R-D);
+    out.T0 = a.modelo==="completa"? out.Tc0 : out.Ts;
+    out.Tc1=irAnual(a.ac,R-D-out.A);
+    out.T1=Math.min(out.Tc1,out.Ts);
+    out.melhor = out.Tc1<out.Ts ? "completa":"simplificada";
+    out.diff=r2(Math.max(0,out.T0-out.T1));
+    out.faixa=faixaDe(a.ac,R-D);
+    if(a.IDd!=null && a.IDd>=0 && Math.abs(a.IDd-out.T0)>1) out.avisos.push("Imposto devido calculado ("+fmt(out.T0)+") difere do declarado ("+fmt(a.IDd)+"). Conferir rendimentos, deduções e incentivos.");
+    if(a.modelo==="simplificada" && !(a.D>0)) out.avisos.push("Modelo simplificado sem deduções do modelo completo informadas: a diferença pode estar superestimada.");
+  } else if(out.A>0){
+    out.modo="rapida";
+    out.diff=r2(out.A*marg);
+    out.faixa=marg;
+    if(a.IDd!=null && a.IDd>=0 && out.diff>a.IDd){ out.diff=r2(a.IDd); out.capped=true; }
+    if(!t && a.R>0) out.avisos.push("Sem tabela do IRPF cadastrada para o ano-calendário "+a.ac+"; usada a estimativa rápida.");
+  } else {
+    out.modo="vazio";
+  }
+  if(out.modo==="tabela" && a.IDd!=null && a.IDd>=0 && out.diff>a.IDd){ out.diff=r2(a.IDd); out.capped=true; }
+  // prescrição
+  if(S.ajuizamento && a.pagamento){
+    const lim=addYears(S.ajuizamento,-5), pg=new Date(a.pagamento+"T12:00:00");
+    const venc=addYears(a.pagamento,5);
+    out.prescreveEm=isoOf(venc);
+    if(pg<lim) out.status="prescrito";
+    else{
+      const dias=(venc-new Date(S.ajuizamento+"T12:00:00"))/864e5;
+      out.status = dias<=120 ? "urgente":"ok";
+      out.dias=Math.round(dias);
+    }
+  }
+  if(S.laudo){ const fimAC=new Date(a.ac+"-12-31T12:00:00"); if(new Date(S.laudo+"T12:00:00")>fimAC) out.laudoPosterior=true; }
+  out.conta = a.incluir && out.status!=="prescrito" && out.diff>0;
+  out.sel=selicFactor(a.pagamento,S.database);
+  out.corrigido=r2(out.diff*out.sel.fator);
+  return out;
+}
+
+/* ================= Render: caso ================= */
+function bindCase(){
+  const map={cliente:"cliente",dependente:"dependente",condicao:"condicao",laudo:"laudo",ajuizamento:"ajuizamento",database:"database",marginal:"marginal"};
+  for(const [id,k] of Object.entries(map)){
+    const el=$("#"+id);
+    el.addEventListener("input",()=>{ S[k]=el.value; touched(); if(id==="condicao") condHint(); recalc(); });
+    el.addEventListener("change",()=>{ S[k]=el.value; touched(); recalc(); });
+  }
+  const sm=$("#salmin");
+  sm.addEventListener("input",()=>{ S.salmin=parseMoney(sm.value)||0; touched(); recalc(); });
+  sm.addEventListener("blur",()=>{ sm.value=moneyStr(S.salmin); });
+  $("#vincendo").addEventListener("change",e=>{ S.vincendo=e.target.checked; touched(); recalc(); });
+}
+function fillCase(){
+  $("#cliente").value=S.cliente; $("#dependente").value=S.dependente; $("#condicao").value=S.condicao;
+  $("#laudo").value=S.laudo; $("#ajuizamento").value=S.ajuizamento; $("#database").value=S.database;
+  $("#marginal").value=S.marginal; $("#salmin").value=moneyStr(S.salmin); $("#vincendo").checked=!!S.vincendo;
+  condHint();
+  const b=$("#banner");
+  if(S.example){ b.dataset.kind="example"; $("#bannerText").innerHTML="<b>Dados de exemplo.</b> Os valores abaixo são fictícios e servem só para mostrar o cálculo. Use “Novo caso” para começar com os dados do cliente."; }
+  else { b.dataset.kind="real"; $("#bannerText").innerHTML="Os dados ficam só nesta aba. Para guardar o caso, use “Copiar dados do caso” e salve o texto na pasta do cliente."; }
+}
+function condHint(){ const c=COND[$("#condicao").value]; $("#condHint").innerHTML='<span class="chip '+c.k+'">Força da tese: '+c.f+'</span> '+esc(c.t); }
+function touched(){ if(S.example){ S.example=false; fillBannerOnly(); } }
+function fillBannerOnly(){ const b=$("#banner"); b.dataset.kind="real"; $("#bannerText").innerHTML="Os dados ficam só nesta aba. Para guardar o caso, use “Copiar dados do caso” e salve o texto na pasta do cliente."; }
+
+/* ================= Render: exercícios ================= */
+const FIELDS=[
+  {k:"R",l:"Rendimentos tributáveis",h:"Total do ano (titular + dependentes)"},
+  {k:"D",l:"Deduções (modelo completo)",h:""},
+  {k:"Ed",l:"Instrução da PcD já deduzida",h:"Normalmente o limite de R$ 3.561,50"},
+  {k:"E",l:"Despesa escolar total da PcD",h:"Declaração anual de quitação da escola"},
+  {k:"IDd",l:"Imposto devido declarado",h:"Opcional, para conferência"}
+];
+function renderYears(){
+  const box=$("#years"); box.innerHTML="";
+  S.anos.forEach((a,i)=>{
+    const el=document.createElement("article");
+    el.className="year"; el.dataset.i=i;
+    el.innerHTML=`
+      <div class="year-head">
+        <span class="ex">Exercício ${a.ex}</span><span class="ac">ano-calendário ${a.ac}</span>
+        <div class="chips" data-role="chips"></div>
+        <label class="switch"><input type="checkbox" id="inc-${a.ex}" ${a.incluir?"checked":""}> Incluir</label>
+      </div>
+      <div class="year-body">
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <span class="note">Modelo usado</span>
+          <div class="seg" role="group" aria-label="Modelo da declaração">
+            <button type="button" data-mod="completa" aria-pressed="${a.modelo==="completa"}">Completo</button>
+            <button type="button" data-mod="simplificada" aria-pressed="${a.modelo==="simplificada"}">Simplificado</button>
+          </div>
+          <div class="field" style="margin-left:auto;grid-auto-flow:column;align-items:center;gap:8px">
+            <label for="pg-${a.ex}">Data do pagamento</label>
+            <input id="pg-${a.ex}" type="date" value="${a.pagamento||""}" style="width:auto">
+          </div>
+        </div>
+        <div class="grid">
+          ${FIELDS.map(f=>`<div class="field"><label for="${f.k}-${a.ex}" data-lbl="${f.k}">${f.l}</label><input class="money" id="${f.k}-${a.ex}" data-k="${f.k}" type="text" inputmode="decimal" placeholder="0,00" value="${moneyStr(a[f.k])}"><span class="hint" data-hint="${f.k}">${f.h}</span></div>`).join("")}
+        </div>
+        <div class="year-foot" data-role="foot"></div>
+      </div>`;
+    box.appendChild(el);
+    el.querySelectorAll("input.money").forEach(inp=>{
+      inp.addEventListener("input",()=>{ a[inp.dataset.k]=parseMoney(inp.value); touched(); recalc(); });
+      inp.addEventListener("blur",()=>{ inp.value=moneyStr(a[inp.dataset.k]); });
+    });
+    el.querySelector("#inc-"+a.ex).addEventListener("change",e=>{ a.incluir=e.target.checked; touched(); recalc(); });
+    el.querySelector("#pg-"+a.ex).addEventListener("change",e=>{ a.pagamento=e.target.value; touched(); recalc(); });
+    el.querySelectorAll("[data-mod]").forEach(b=>b.addEventListener("click",()=>{
+      a.modelo=b.dataset.mod; el.querySelectorAll("[data-mod]").forEach(x=>x.setAttribute("aria-pressed",x===b)); touched(); updateModelLabels(el,a); recalc();
+    }));
+    updateModelLabels(el,a);
+  });
+}
+function updateModelLabels(el,a){
+  el.querySelector('[data-hint="D"]').textContent = a.modelo==="completa" ? "Total das deduções legais da declaração" : "Deduções que teria no modelo completo";
+}
+function yearChips(r){
+  const c=[];
+  if(r.status==="prescrito") c.push('<span class="chip bad">Prescrito em '+dateBR(r.prescreveEm)+'</span>');
+  else if(r.status==="urgente") c.push('<span class="chip warn">Prescreve em '+dateBR(r.prescreveEm)+'</span>');
+  else c.push('<span class="chip good">No prazo</span>');
+  if(r.modo==="rapida") c.push('<span class="chip neutral">Estimativa rápida</span>');
+  if(r.laudoPosterior) c.push('<span class="chip warn">Laudo posterior</span>');
+  return c.join("");
+}
+function yearFoot(r){
+  if(r.modo==="vazio") return "<span>Informe a despesa escolar para calcular este exercício.</span>";
+  const p=[];
+  p.push("Acréscimo de dedução <b>"+fmt(r.A)+"</b>");
+  if(r.modo==="tabela"){
+    p.push("IR original <b>"+fmt(r.T0)+"</b>");
+    p.push("IR recalculado <b>"+fmt(r.T1)+"</b> ("+r.melhor+")");
+  } else p.push("Alíquota "+n2.format(r.faixa*100)+"%");
+  p.push("Diferença <b>"+fmt(r.diff)+"</b>"+(r.capped?" (limitada ao imposto devido)":""));
+  p.push("Selic "+n2.format(r.sel.soma+1)+"% → <b>"+fmt(r.corrigido)+"</b>");
+  return p.map(x=>"<span>"+x+"</span>").join("");
+}
+
+/* ================= Recalcular e resultado ================= */
+let LAST=[];
+function recalc(){
+  const rs=S.anos.map(calcYear); LAST=rs;
+  document.querySelectorAll("#years .year").forEach((el,i)=>{
+    const r=rs[i];
+    el.dataset.off = (!r.a.incluir||r.status==="prescrito")?"1":"0";
+    el.querySelector('[data-role="chips"]').innerHTML=yearChips(r);
+    el.querySelector('[data-role="foot"]').innerHTML=yearFoot(r);
+  });
+  const inc=rs.filter(r=>r.conta);
+  const nominal=r2(inc.reduce((s,r)=>s+r.diff,0));
+  const total=r2(inc.reduce((s,r)=>s+r.corrigido,0));
+  const lastR=[...rs].reverse().find(r=>r.diff>0 && r.a.incluir);
+  const futuro= lastR? lastR.diff : 0;
+  const causa=r2(total + (S.vincendo? futuro:0));
+  $("#rTotal").textContent=fmt(total);
+  $("#rNominal").textContent=fmt(nominal);
+  $("#rSelic").textContent=fmt(total-nominal);
+  $("#rCausa").textContent=fmt(causa);
+  $("#rFuturo").textContent=fmt(futuro);
+
+  const teto=r2((S.salmin||0)*60);
+  const chips=[];
+  const cond=COND[S.condicao];
+  chips.push('<span class="chip '+cond.k+'">Tese: '+cond.f+'</span>');
+  if(teto>0) chips.push(causa<=teto? '<span class="chip good">Cabe no JEF (até '+fmt(teto)+')</span>' : '<span class="chip warn">Acima do teto do JEF ('+fmt(teto)+')</span>');
+  chips.push('<span class="chip neutral">'+inc.length+' exercício'+(inc.length===1?"":"s")+' no cálculo</span>');
+  $("#rChips").innerHTML=chips.join("");
+
+  renderChart(rs);
+  renderAlerts(rs,causa,teto);
+  renderDetail(rs,nominal,total);
+}
+function renderChart(rs){
+  const max=Math.max(1,...rs.map(r=>r.corrigido));
+  $("#chart").innerHTML=rs.map(r=>{
+    const off=!r.conta;
+    const a=r.diff/max*100, b=(r.corrigido-r.diff)/max*100;
+    return `<div class="bar-row ${off?"off":""}"><span class="y">${r.a.ex}</span><div class="bar-track" title="${fmt(r.diff)} + Selic ${fmt(r.corrigido-r.diff)}"><i class="a" style="width:${a}%"></i><i class="b" style="width:${b}%"></i></div><span class="v">${fmt(r.corrigido)}</span></div>`;
+  }).join("");
+}
+function renderAlerts(rs,causa,teto){
+  const L=[];
+  const cond=COND[S.condicao];
+  if(cond.k==="bad") L.push(["bad","Condição com enquadramento frágil: "+cond.t]);
+  else if(cond.k==="warn") L.push(["","Risco maior de enquadramento: "+cond.t]);
+  const pres=rs.filter(r=>r.status==="prescrito"&&r.diff>0);
+  if(pres.length) L.push(["info","Fora do prazo de 5 anos para o ajuizamento em "+dateBR(S.ajuizamento)+": "+pres.map(r=>r.a.ex).join(", ")+" ("+fmt(pres.reduce((s,r)=>s+r.corrigido,0))+" não entram)."]);
+  rs.filter(r=>r.status==="urgente"&&r.a.incluir&&r.diff>0).forEach(r=>L.push(["bad","Exercício "+r.a.ex+" prescreve em "+dateBR(r.prescreveEm)+". Ajuizar antes dessa data para preservar "+fmt(r.corrigido)+"."]));
+  const lp=rs.filter(r=>r.laudoPosterior&&r.conta);
+  if(lp.length) L.push(["","Laudo de "+dateBR(S.laudo)+" é posterior aos anos-calendário de "+lp.map(r=>r.a.ex).join(", ")+". A dedução alcança os períodos cobertos pelo laudo."]);
+  rs.filter(r=>r.conta).forEach(r=>r.avisos.forEach(t=>L.push(["","Exercício "+r.a.ex+": "+t])));
+  const simp=rs.filter(r=>r.conta&&r.modo==="tabela"&&r.melhor==="simplificada");
+  if(simp.length) L.push(["info","Nos exercícios "+simp.map(r=>r.a.ex).join(", ")+" o modelo simplificado continua melhor mesmo com a dedução integral."]);
+  const semImp=rs.filter(r=>r.a.incluir&&r.modo==="tabela"&&r.A>0&&r.diff===0&&r.status!=="prescrito");
+  if(semImp.length) L.push(["info","Sem imposto a restituir em "+semImp.map(r=>r.a.ex).join(", ")+" (não houve imposto suficiente ou o simplificado é mais vantajoso)."]);
+  let est=0, falt=0; rs.filter(r=>r.conta).forEach(r=>{ est+=r.sel.estimados; falt+=r.sel.faltantes; });
+  if(est||falt) L.push(["","A correção usa "+(est?est+" mês(es) de Selic estimada":"")+(est&&falt?" e ":"")+(falt?falt+" mês(es) sem taxa (repetida a última disponível)":"")+". Atualize a série em Parâmetros."]);
+  if(teto>0&&causa>teto) L.push(["","Valor da causa acima de 60 salários mínimos: avaliar vara federal comum ou renúncia ao excedente para o JEF."]);
+  $("#alerts").innerHTML=L.map(([k,t])=>'<li class="'+k+'">'+esc(t)+'</li>').join("");
+}
+function renderDetail(rs,nominal,total){
+  const head=`<thead><tr><th>Exercício</th><th>Modelo</th><th>Despesa escolar</th><th>Já deduzido</th><th>Acréscimo</th><th>IR original</th><th>IR recalculado</th><th>Diferença</th><th>Pagamento</th><th>Selic acum.</th><th>Corrigido</th></tr></thead>`;
+  const body=rs.map(r=>{
+    const a=r.a;
+    return `<tr class="${r.conta?"":"off"}"><td>${a.ex} <span class="note">(AC ${a.ac})</span></td><td>${a.modelo==="completa"?"Completo":"Simplificado"}</td><td>${fmt(a.E)}</td><td>${fmt(a.Ed)}</td><td>${fmt(r.A)}</td><td>${r.modo==="tabela"?fmt(r.T0):"—"}</td><td>${r.modo==="tabela"?fmt(r.T1):"—"}</td><td>${fmt(r.diff)}</td><td>${dateBR(a.pagamento)}</td><td>${n2.format(r.sel.soma+1)}%</td><td>${fmt(r.corrigido)}</td></tr>`;
+  }).join("");
+  const foot=`<tfoot><tr><td colspan="7">Total dos exercícios no prazo e incluídos</td><td>${fmt(nominal)}</td><td></td><td></td><td>${fmt(total)}</td></tr></tfoot>`;
+  $("#detail").innerHTML=head+"<tbody>"+body+"</tbody>"+foot;
+  $("#memo").innerHTML=rs.filter(r=>r.modo!=="vazio").map(r=>`<details><summary>Memória de cálculo · exercício ${r.a.ex}</summary><pre>${esc(memoText(r))}</pre></details>`).join("");
+}
+function memoText(r){
+  const a=r.a, L=[];
+  L.push("Exercício "+a.ex+" (ano-calendário "+a.ac+") · modelo "+(a.modelo==="completa"?"completo":"simplificado"));
+  L.push("1. Despesa escolar total da PcD ............ "+fmt(a.E));
+  L.push("2. Instrução já deduzida .................... "+fmt(a.Ed));
+  L.push("3. Acréscimo de dedução (1 − 2) ............. "+fmt(r.A));
+  if(r.modo==="tabela"){
+    const R=a.R, D=a.D||0;
+    L.push("4. Rendimentos tributáveis .................. "+fmt(R));
+    L.push("5. Deduções do modelo completo .............. "+fmt(D));
+    L.push("6. Base original completa (4 − 5) ........... "+fmt(R-D)+" → IR "+fmt(r.Tc0));
+    L.push("7. Desconto simplificado (20%, teto "+n2.format(IR[a.ac].simp)+") "+fmt(r.desc)+" → IR "+fmt(r.Ts));
+    L.push("8. IR original (modelo usado) ............... "+fmt(r.T0));
+    L.push("9. Nova base completa (6 − 3) ............... "+fmt(R-D-r.A)+" → IR "+fmt(r.Tc1));
+    L.push("10. IR recalculado (menor entre 9 e 7) ...... "+fmt(r.T1)+" ("+r.melhor+")");
+    L.push("11. Diferença de imposto (8 − 10) ........... "+fmt(r.diff)+(r.capped?" (limitada ao imposto devido declarado)":""));
+  } else {
+    L.push("4. Estimativa rápida: acréscimo × "+n2.format(r.faixa*100)+"% = "+fmt(r.diff)+(r.capped?" (limitada ao imposto devido declarado)":""));
+  }
+  const s=r.sel;
+  L.push("Selic: pagamento em "+dateBR(a.pagamento)+"; soma de "+(s.meses?ymLabel(s.de)+" a "+ymLabel(s.ate):"nenhum mês")+" = "+n2.format(s.soma)+"% + 1% (mês da atualização) → fator "+n4.format(s.fator));
+  L.push("Valor corrigido até "+(S.database||"—")+": "+fmt(r.corrigido));
+  L.push("Prazo: pagamento + 5 anos = "+dateBR(r.prescreveEm)+" · situação: "+(r.status==="prescrito"?"prescrito":r.status==="urgente"?"prescreve em breve":"no prazo")+(a.incluir?"":" · excluído manualmente"));
+  return L.join("\n");
+}
+
+/* ================= Cópia ================= */
+async function copyText(txt,okMsg){
+  try{ await navigator.clipboard.writeText(txt); toast(okMsg); $("#copyFallback").hidden=true; }
+  catch(e){ const t=$("#copyFallback"); t.hidden=false; t.value=txt; t.focus(); t.select(); toast("Texto selecionado abaixo. Copie com Ctrl+C."); }
+}
+function fullMemo(){
+  const rs=LAST, inc=rs.filter(r=>r.conta);
+  const nominal=r2(inc.reduce((s,r)=>s+r.diff,0)), total=r2(inc.reduce((s,r)=>s+r.corrigido,0));
+  const H=[];
+  H.push("NT ADVOCACIA · MEMÓRIA DE CÁLCULO (ESTIMATIVA) · TEMA 324 TNU");
+  H.push("Cliente: "+(S.cliente||"[cliente]")+" · Pessoa com deficiência: "+(S.dependente||"[dependente]"));
+  H.push("Condição: "+$("#condicao").selectedOptions[0].text+" · Laudo: "+dateBR(S.laudo));
+  H.push("Ajuizamento previsto: "+dateBR(S.ajuizamento)+" · Atualização até: "+(S.database||"—"));
+  H.push("");
+  rs.filter(r=>r.modo!=="vazio").forEach(r=>{ H.push(memoText(r)); H.push(""); });
+  H.push("TOTAL nominal (exercícios no prazo): "+fmt(nominal));
+  H.push("TOTAL corrigido pela Selic: "+fmt(total));
+  H.push("Valor da causa: "+$("#rCausa").textContent+(S.vincendo?" (inclui 1 exercício futuro estimado)":""));
+  H.push("");
+  H.push("Estimativa para triagem, sujeita à validação da advogada responsável. Não constitui promessa de resultado.");
+  return H.join("\n");
+}
+function tsv(){
+  const rows=[["Exercício","Ano-calendário","Modelo","Despesa escolar","Já deduzido","Acréscimo","IR original","IR recalculado","Diferença","Data pagamento","Selic acumulada (%)","Fator","Corrigido","Situação"]];
+  LAST.forEach(r=>{ const a=r.a; rows.push([a.ex,a.ac,a.modelo,n2.format(a.E||0),n2.format(a.Ed||0),n2.format(r.A),r.T0!=null?n2.format(r.T0):"",r.T1!=null?n2.format(r.T1):"",n2.format(r.diff),dateBR(a.pagamento),n2.format(r.sel.soma+1),n4.format(r.sel.fator),n2.format(r.corrigido),r.conta?"incluído":(r.status==="prescrito"?"prescrito":"fora do cálculo")]); });
+  return rows.map(r=>r.join("\t")).join("\n");
+}
+
+/* ================= Parâmetros: tabelas ================= */
+function renderIrTables(){
+  const acs=Object.keys(IR).map(Number);
+  let h="<thead><tr><th>Ano-calendário</th><th>Isento até</th><th>7,5% até</th><th>15% até</th><th>22,5% até</th><th>Parcelas a deduzir (7,5 / 15 / 22,5 / 27,5%)</th><th>Teto simplificado</th></tr></thead><tbody>";
+  acs.forEach(ac=>{ const f=IR[ac].faixas; h+=`<tr><td>${ac} <span class="note">(ex. ${ac+1})</span></td><td>${n2.format(f[0][0])}</td><td>${n2.format(f[1][0])}</td><td>${n2.format(f[2][0])}</td><td>${n2.format(f[3][0])}</td><td>${[1,2,3,4].map(i=>n2.format(f[i][2])).join(" / ")}</td><td>${n2.format(IR[ac].simp)}</td></tr>`; });
+  $("#irTables").innerHTML=h+"</tbody>";
+}
+function renderSelic(){
+  const ys=Object.keys(SELIC).map(Number).sort();
+  let h="<thead><tr><th>Ano</th>"+MESES.map(m=>"<th>"+m+"</th>").join("")+"<th>Soma</th></tr></thead><tbody>";
+  ys.forEach(y=>{
+    const row=SELIC[y]; let s=0;
+    h+="<tr><td>"+y+"</td>"+row.map((v,m)=>{ if(v!=null&&v!=="") s+=+v; return `<td><input type="text" inputmode="decimal" id="selic-${y}-${m}" data-y="${y}" data-m="${m}" class="${isEst(y,m)?"est":""}" value="${v==null||v===""?"":n2.format(v)}" aria-label="Selic ${MESES[m]}/${y}"></td>`; }).join("")+"<td>"+n2.format(s)+"</td></tr>";
+  });
+  $("#selicTable").innerHTML=h+"</tbody>";
+  $("#selicTable").querySelectorAll("input").forEach(inp=>inp.addEventListener("change",()=>{
+    const y=+inp.dataset.y, m=+inp.dataset.m, v=parseMoney(inp.value);
+    SELIC[y][m]= v==null? null : v;
+    SELIC_EST[y]=(SELIC_EST[y]||[]).filter(x=>x!==m);
+    saveSelic(); renderSelic(); recalc();
+  }));
+  const lk=lastKnown(); let nEst=0; Object.values(SELIC_EST).forEach(a=>nEst+=a.length);
+  $("#selicStatus").textContent="Último mês com taxa: "+MESES[lk.m]+"/"+lk.y+"."+(nEst?" "+nEst+" mês(es) marcados como estimativa.":" Nenhum mês estimado.");
+}
+function applySelicSeries(list){
+  // list: [{data:"dd/mm/aaaa", valor:"0.38"}]
+  let n=0;
+  list.forEach(o=>{
+    const m=String(o.data||"").match(/(\d{2})\/(\d{2})\/(\d{4})/); if(!m) return;
+    const y=+m[3], mo=+m[2]-1, v=parseFloat(String(o.valor).replace(",","."));
+    if(!isFinite(v)) return;
+    if(!SELIC[y]) SELIC[y]=Array(12).fill(null);
+    SELIC[y][mo]=v; SELIC_EST[y]=(SELIC_EST[y]||[]).filter(x=>x!==mo); n++;
+  });
+  if(n){ saveSelic(); renderSelic(); recalc(); toast(n+" meses da Selic atualizados."); }
+  else toast("Nenhum mês reconhecido. Use o JSON da série SGS 4390.");
+}
+function parseSelicText(txt){
+  txt=txt.trim();
+  try{ const j=JSON.parse(txt); if(Array.isArray(j)) return j; }catch(e){}
+  const out=[]; txt.split(/\r?\n/).forEach(l=>{ const m=l.match(/(\d{2}\/\d{2}\/\d{4})\s*[;,\t]\s*"?([\d.,]+)"?/); if(m) out.push({data:m[1],valor:m[2]}); });
+  return out;
+}
+
+/* ================= Importação de PDF ================= */
+let pdfReady=null;
+function loadPdfJs(){
+  if(pdfReady) return pdfReady;
+  const base="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+  const add=src=>new Promise((res,rej)=>{ const s=document.createElement("script"); s.src=src; s.onload=res; s.onerror=()=>rej(new Error("Não foi possível carregar o leitor de PDF.")); document.head.appendChild(s); });
+  pdfReady = add(base+"pdf.min.js").then(()=>add(base+"pdf.worker.min.js")).then(()=>{
+    const lib=window.pdfjsLib; if(!lib) throw new Error("Leitor de PDF indisponível.");
+    lib.GlobalWorkerOptions.workerSrc=base+"pdf.worker.min.js";
+    return lib;
+  });
+  pdfReady.catch(()=>{ pdfReady=null; });
+  return pdfReady;
+}
+async function pdfLines(file){
+  const lib=await loadPdfJs();
+  const buf=await file.arrayBuffer();
+  const doc=await lib.getDocument({data:buf, disableWorker:true, isEvalSupported:false}).promise;
+  const lines=[];
+  for(let p=1;p<=doc.numPages;p++){
+    const page=await doc.getPage(p);
+    const tc=await page.getTextContent();
+    const rows=new Map();
+    tc.items.forEach(it=>{ if(!it.str||!it.str.trim()) return; const y=Math.round(it.transform[5]/2)*2; if(!rows.has(y)) rows.set(y,[]); rows.get(y).push({x:it.transform[4],s:it.str}); });
+    [...rows.entries()].sort((a,b)=>b[0]-a[0]).forEach(([,items])=>{ lines.push(items.sort((a,b)=>a.x-b.x).map(i=>i.s).join(" ").replace(/\s+/g," ").trim()); });
+  }
+  return lines;
+}
+const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toUpperCase();
+const MONEY_RE=/\d{1,3}(?:\.\d{3})*,\d{2}/g;
+function moneysIn(line){ return (line.match(MONEY_RE)||[]).map(parseMoney); }
+function parseDecl(lines){
+  const U=lines.map(norm);
+  const all=U.join("\n");
+  const r={fonte:[]};
+  let m=all.match(/EXERCICIO\s*(?:DE\s*)?:?\s*(20\d\d)/); if(m) r.ex=+m[1];
+  m=all.match(/ANO[\s-]*CALENDARIO\s*(?:DE\s*)?:?\s*(20\d\d)/); if(m) r.ac=+m[1];
+  if(!r.ex && r.ac) r.ex=r.ac+1;
+  const find=(re,from=0,to=U.length)=>{ for(let i=from;i<to;i++) if(re.test(U[i])) return i; return -1; };
+  const valAt=i=>{ if(i<0) return null; let v=moneysIn(lines[i]); if(v.length) return v[v.length-1]; for(let k=1;k<=2&&i+k<lines.length;k++){ v=moneysIn(lines[i+k]); if(v.length) return v[0]; } return null; };
+  const sec=find(/RENDIMENTOS TRIBUTAVEIS E DEDUC/);
+  const secImp=find(/^IMPOSTO DEVIDO\s*$|^IMPOSTO DEVIDO$/,sec>=0?sec:0);
+  if(sec>=0){
+    const t1=find(/^TOTAL\b/,sec+1,secImp>0?secImp:U.length);
+    if(t1>=0){ r.R=valAt(t1); r.fonte.push("R"); const t2=find(/^TOTAL\b/,t1+1,secImp>0?secImp:U.length); if(t2>=0){ r.D=valAt(t2); r.fonte.push("D"); } }
+  }
+  if(r.R==null){ const i=find(/TOTAL DOS RENDIMENTOS TRIBUTAVEIS|RENDIMENTOS TRIBUTAVEIS\b.*\d,\d{2}$/); if(i>=0){ r.R=valAt(i); r.fonte.push("R"); } }
+  const iBase=find(/BASE DE CALCULO DO IMPOSTO/); if(iBase>=0) r.base=valAt(iBase);
+  const iDesc=find(/DESCONTO SIMPLIFICADO/); if(iDesc>=0) r.desc=valAt(iDesc);
+  let iDev=find(/^TOTAL DO IMPOSTO DEVIDO/); if(iDev<0) iDev=find(/^IMPOSTO DEVIDO\s+[\d.]+,\d{2}/);
+  if(iDev<0){ const k=find(/^IMPOSTO DEVIDO\b/, iBase>=0?iBase:0); if(k>=0 && moneysIn(lines[k]).length) iDev=k; }
+  if(iDev>=0) r.IDd=valAt(iDev);
+  const iEd=find(/DESPESAS COM INSTRUCAO/); if(iEd>=0) r.Ed=valAt(iEd);
+  const simp=/DECLARACAO DE AJUSTE ANUAL SIMPLIFICADA|OPCAO PELO DESCONTO SIMPLIFICADO|MODELO SIMPLIFICADO/.test(all) || (r.desc>0);
+  r.modelo= simp? "simplificada":"completa";
+  if(r.modelo==="completa"){
+    if(r.R!=null && r.base!=null && r.D==null) r.D=r2(r.R-r.base);
+    if(r.R==null && r.base!=null && r.D!=null) r.R=r2(r.base+r.D);
+  } else {
+    if(r.R==null && r.base!=null && r.desc!=null) r.R=r2(r.base+r.desc);
+    r.D=null; // deduções do completo não constam da simplificada
+  }
+  return r;
+}
+const IMPORTS=[];
+function renderImports(){
+  $("#importList").innerHTML=IMPORTS.map((r,i)=>{
+    const ok=r.ex && S.anos.some(a=>a.ex===r.ex);
+    const kv=[["Modelo",r.modelo==="completa"?"Completo":"Simplificado"],["Rendimentos tributáveis",r.R],["Deduções",r.D],["Base de cálculo",r.base],["Desconto simplificado",r.desc],["Instrução deduzida",r.Ed],["Imposto devido",r.IDd]];
+    return `<div class="import-item"><header><b>${esc(r.nome)}</b>${r.ex?`<span class="chip neutral">Exercício ${r.ex}</span>`:'<span class="chip bad">Exercício não reconhecido</span>'}${r.erro?`<span class="chip bad">${esc(r.erro)}</span>`:""}<span style="margin-left:auto;display:flex;gap:6px">${ok&&!r.erro?`<button class="btn small primary" type="button" data-apply="${i}">Aplicar ao exercício ${r.ex}</button>`:""}<button class="btn small" type="button" data-drop="${i}">Descartar</button></span></header>
+      ${r.erro?"":`<div class="kv">${kv.filter(([,v])=>v!==undefined).map(([k,v])=>`<div><span>${k}</span><b class="num">${typeof v==="number"?n2.format(v):(v==null?"não lido":esc(v))}</b></div>`).join("")}</div>
+      <p class="note">Confira os valores com a declaração antes de aplicar. A despesa escolar total vem da declaração da escola e deve ser digitada no exercício.${r.modelo==="simplificada"?" No simplificado, as deduções do modelo completo precisam ser informadas à mão.":""}</p>`}</div>`;
+  }).join("");
+  $("#importList").querySelectorAll("[data-apply]").forEach(b=>b.addEventListener("click",()=>applyImport(+b.dataset.apply)));
+  $("#importList").querySelectorAll("[data-drop]").forEach(b=>b.addEventListener("click",()=>{ IMPORTS.splice(+b.dataset.drop,1); renderImports(); }));
+}
+function applyImport(i){
+  const r=IMPORTS[i]; const a=S.anos.find(x=>x.ex===r.ex); if(!a) return;
+  if(S.example){ S=Object.assign(blankCase(),{}); fillCase(); renderYears(); }
+  const tgt=S.anos.find(x=>x.ex===r.ex);
+  tgt.modelo=r.modelo;
+  ["R","D","Ed","IDd"].forEach(k=>{ if(r[k]!=null) tgt[k]=r[k]; });
+  S.example=false; fillCase(); renderYears(); recalc();
+  IMPORTS.splice(i,1); renderImports();
+  toast("Exercício "+r.ex+" preenchido. Informe a despesa escolar total.");
+  document.getElementById("E-"+r.ex)?.focus();
+}
+async function handleFiles(files){
+  for(const f of files){
+    const item={nome:f.name};
+    try{
+      let lines;
+      if(/\.txt$/i.test(f.name)||f.type==="text/plain") lines=(await f.text()).split(/\r?\n/);
+      else { toast("Lendo "+f.name+"…"); lines=await pdfLines(f); }
+      if(!lines.join("").trim()) throw new Error("PDF sem texto (digitalizado?)");
+      Object.assign(item,parseDecl(lines));
+    }catch(e){ item.erro=e.message||"Não foi possível ler o arquivo"; }
+    IMPORTS.push(item);
+  }
+  renderImports();
+}
+
+/* ================= Eventos gerais ================= */
+function init(){
+  bindCase(); fillCase(); renderYears(); renderIrTables(); renderSelic(); recalc();
+  $("#btnNew").addEventListener("click",()=>{ S=blankCase(); fillCase(); renderYears(); recalc(); toast("Novo caso aberto."); });
+  $("#btnExample").addEventListener("click",()=>{ S=exampleCase(); fillCase(); renderYears(); recalc(); toast("Exemplo carregado."); });
+  $("#btnExportCase").addEventListener("click",()=>copyText(JSON.stringify({ntTema324:1,caso:S},null,1),"Dados do caso copiados. Cole num arquivo .json na pasta do cliente."));
+  $("#caseFile").addEventListener("change",async e=>{
+    const f=e.target.files[0]; if(!f) return;
+    try{ const j=JSON.parse(await f.text()); const c=j.caso||j; if(!Array.isArray(c.anos)) throw 0; S=Object.assign(blankCase(),c); S.example=false; fillCase(); renderYears(); recalc(); toast("Caso aberto."); }
+    catch(err){ toast("Arquivo não reconhecido. Use o texto gerado por “Copiar dados do caso”."); }
+    e.target.value="";
+  });
+  $("#btnCopyMemo").addEventListener("click",()=>copyText(fullMemo(),"Memória de cálculo copiada."));
+  $("#btnCopyTable").addEventListener("click",()=>copyText(tsv(),"Planilha copiada. Cole no Excel."));
+  const drop=$("#drop");
+  ["dragenter","dragover"].forEach(ev=>drop.addEventListener(ev,e=>{ e.preventDefault(); drop.classList.add("over"); }));
+  ["dragleave","drop"].forEach(ev=>drop.addEventListener(ev,e=>{ e.preventDefault(); drop.classList.remove("over"); }));
+  drop.addEventListener("drop",e=>{ if(e.dataTransfer.files.length) handleFiles([...e.dataTransfer.files]); });
+  $("#pdfFile").addEventListener("change",e=>{ handleFiles([...e.target.files]); e.target.value=""; });
+  $("#btnParsePaste").addEventListener("click",()=>{ const t=$("#pasteText").value; if(!t.trim()){ toast("Cole o texto da declaração primeiro."); return; } const r=parseDecl(t.split(/\r?\n/)); r.nome="Texto colado"; IMPORTS.push(r); renderImports(); });
+  $("#btnFetchSelic").addEventListener("click",async()=>{
+    try{
+      const res=await fetch("https://api.bcb.gov.br/dados/serie/bcdata.sgs.4390/dados?formato=json&dataInicial=01/01/2020");
+      if(!res.ok) throw 0; applySelicSeries(await res.json());
+    }catch(e){ toast("O navegador bloqueou a consulta. Abra a série oficial, salve o arquivo e use “Importar arquivo”."); }
+  });
+  $("#selicFile").addEventListener("change",async e=>{ const f=e.target.files[0]; if(!f) return; applySelicSeries(parseSelicText(await f.text())); e.target.value=""; });
+  $("#btnResetSelic").addEventListener("click",()=>{ SELIC=JSON.parse(JSON.stringify(SELIC_DEFAULT)); SELIC_EST=JSON.parse(JSON.stringify(SELIC_EST_DEFAULT)); saveSelic(); renderSelic(); recalc(); toast("Selic restaurada."); });
+}
+init();
+})();
+</script>
