@@ -329,18 +329,31 @@
   .lgpd { margin-top: 26px; font-size: 14px; color: var(--tinta-suave); max-width: 80ch; }
 
   /* Quem atende */
-  .sobre { display: grid; grid-template-columns: 180px 1fr; gap: 48px; align-items: center; }
-  @media (max-width: 700px) { .sobre { grid-template-columns: 1fr; gap: 28px; } }
-  .monograma {
-    width: 180px; height: 180px;
+  .sobre { display: grid; grid-template-columns: 280px 1fr; gap: 64px; align-items: center; }
+  @media (max-width: 760px) { .sobre { grid-template-columns: 1fr; gap: 40px; } }
+  .retrato {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 4 / 5;
+  }
+  .retrato::before {
+    /* moldura dourada deslocada, como a linha do papel timbrado */
+    content: "";
+    position: absolute;
+    inset: 14px -14px -14px 14px;
     border: 1px solid var(--dourado);
-    display: grid; place-items: center;
-    font-family: var(--serif);
-    font-size: 64px;
-    letter-spacing: 0.06em;
-    color: var(--cafe);
+  }
+  .retrato img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     background: var(--cartao);
   }
+  @media (max-width: 760px) { .retrato { max-width: 240px; } }
   .sobre__texto { display: grid; gap: 14px; max-width: 64ch; }
   .sobre__texto p { color: var(--tinta-suave); }
   .sobre__oab { font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dourado); font-weight: 500; }
@@ -591,7 +604,9 @@
 
   <section class="secao secao--creme" id="sobre" aria-labelledby="sobre-titulo">
     <div class="envoltorio sobre">
-      <div class="monograma" aria-hidden="true">NT</div>
+      <figure class="retrato">
+        <img src="img/nayara-tonete.jpg" width="560" height="700" loading="lazy" decoding="async" alt="Retrato da advogada Nayara Tonete, de blazer preto, com a mão apoiada no queixo">
+      </figure>
       <div class="sobre__texto">
         <p class="rotulo">Quem atende</p>
         <h2 id="sobre-titulo">Nayara Tonete</h2>
