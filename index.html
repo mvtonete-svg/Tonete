@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Imposto de Renda | Nayara Tonete Advogada</title>
+<meta name="description" content="Orientação jurídica sobre Imposto de Renda da pessoa física: malha fina, notificações da Receita, isenção por doença grave, deduções e restituição. Nayara Tonete, advogada, OAB/SP 479.459.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap">
+<style>
+  :root {
+    --cafe: #573B2C;
+    --cafe-escuro: #3F2A1F;
+    --dourado: #A68664;
+    --dourado-claro: #C9AE8C;
+    --creme: #F1E1D1;
+    --papel: #FAF7F2;
+    --tinta: #3A2A22;
+    --tinta-suave: #6E5A4E;
+    --linha: #E3D3C2;
+    --serif: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+    --sans: "Poppins", "Segoe UI", -apple-system, Arial, sans-serif;
+    --largura: 1120px;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--dourado); outline-offset: 3px; }
+
+  .envoltorio {
+    width: 100%;
+    max-width: var(--largura);
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
+
+  /* Rótulos em caixa-alta, padrão da identidade visual */
+  .rotulo {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin: 0;
+  }
+  h1, h2, h3 { text-wrap: balance; margin: 0; }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(30px, 4vw, 42px);
+    line-height: 1.15;
+    color: var(--cafe);
+  }
+  p { margin: 0; }
+
+  .botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 26px;
+    border-radius: 2px;
+    background: var(--dourado);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background .2s ease;
+  }
+  .botao:hover { background: #8F7253; }
+  .botao svg { width: 18px; height: 18px; flex: none; fill: currentColor; }
+  .botao--contorno {
+    background: transparent;
+    color: var(--cafe);
+    border: 1px solid var(--cafe);
+  }
+  .botao--contorno:hover { background: var(--cafe); color: var(--papel); }
+
+  /* Faixa marrom no topo, como no papel timbrado */
+  .faixa { height: 4px; background: var(--cafe); }
+
+  /* Cabeçalho */
+  .cabecalho {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 10;
+    background: rgba(250, 247, 242, 0.96);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--linha);
+  }
+  .cabecalho .envoltorio {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: 14px;
+  }
+  .marca { text-decoration: none; display: flex; flex-direction: column; line-height: 1.2; }
+  .marca__nome {
+    font-weight: 500;
+    font-size: 17px;
+    letter-spacing: 0.3em;
+    color: var(--cafe);
+  }
+  .marca__cargo {
+    font-size: 10.5px;
+    letter-spacing: 0.42em;
+    color: var(--dourado);
+    margin-top: 3px;
+  }
+  .menu { display: flex; align-items: center; gap: 28px; }
+  .menu a:not(.botao) {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--tinta-suave);
+    text-decoration: none;
+  }
+  .menu a:not(.botao):hover { color: var(--cafe); }
+  .menu .botao { padding: 10px 18px; font-size: 12px; }
+
+  /* Abertura */
+  .abertura {
+    background: var(--cafe);
+    color: var(--creme);
+    position: relative;
+    overflow: hidden;
+  }
+  .abertura::after {
+    /* linhas finas de formulário, discretas, ao fundo */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(to bottom, transparent 0 39px, rgba(241, 225, 209, 0.05) 39px 40px);
+    pointer-events: none;
+  }
+  .abertura .envoltorio {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 64px;
+    align-items: center;
+    padding-block: 88px 96px;
+  }
+  .abertura .rotulo { color: var(--dourado-claro); }
+  .abertura h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(40px, 5.6vw, 66px);
+    line-height: 1.06;
+    color: var(--papel);
+    margin-top: 22px;
+  }
+  .abertura h1 em { font-style: italic; color: var(--dourado-claro); }
+  .abertura__texto {
+    margin-top: 24px;
+    max-width: 34em;
+    font-size: 17px;
+    color: rgba(241, 225, 209, 0.88);
+  }
+  .abertura__acoes { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+  .abertura .botao--contorno { color: var(--creme); border-color: rgba(241, 225, 209, 0.5); }
+  .abertura .botao--contorno:hover { background: var(--creme); color: var(--cafe); }
+  .abertura__aviso {
+    margin-top: 22px;
+    font-size: 13px;
+    color: rgba(241, 225, 209, 0.65);
+  }
+
+  /* Ficha de referências legais */
+  .ficha {
+    background: var(--papel);
+    color: var(--tinta);
+    padding: 34px 32px 26px;
+    border-top: 3px solid var(--dourado);
+    box-shadow: 0 30px 60px -30px rgba(20, 10, 5, 0.55);
+  }
+  .ficha__titulo { color: var(--cafe); }
+  .ficha dl { margin: 18px 0 0; }
+  .ficha__item {
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    gap: 18px;
+    padding-block: 18px;
+    border-top: 1px solid var(--linha);
+  }
+  .ficha dt {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--cafe);
+    font-variant-numeric: tabular-nums lining-nums;
+    white-space: nowrap;
+  }
+  .ficha dt small { display: block; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--dourado); margin-top: 6px; }
+  .ficha dd { margin: 0; font-size: 14px; line-height: 1.55; }
+  .ficha dd cite { display: block; margin-top: 4px; font-style: normal; font-size: 12px; color: var(--tinta-suave); }
+  .ficha__nota { font-size: 12px; color: var(--tinta-suave); padding-top: 14px; border-top: 1px solid var(--linha); }
+
+  /* Seções */
+  .secao { padding-block: 96px; }
+  .secao--creme { background: var(--creme); }
+  .secao__topo { display: grid; gap: 14px; max-width: 42em; margin-bottom: 52px; }
+  .secao__topo p:not(.rotulo) { color: var(--tinta-suave); font-size: 17px; }
+
+  /* Temas */
+  .temas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--linha);
+    border-left: 1px solid var(--linha);
+  }
+  .tema {
+    padding: 34px 30px 36px;
+    border-right: 1px solid var(--linha);
+    border-bottom: 1px solid var(--linha);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: var(--papel);
+    transition: background .2s ease;
+  }
+  .tema:hover { background: #fff; }
+  .tema__base {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dourado);
+  }
+  .tema h3 {
+    font-family: var(--serif);
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--cafe);
+  }
+  .tema p { font-size: 15px; color: var(--tinta-suave); }
+
+  /* Como funciona */
+  .etapas {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    counter-reset: etapa;
+  }
+  .etapa { counter-increment: etapa; display: grid; gap: 10px; align-content: start; }
+  .etapa::before {
+    content: counter(etapa);
+    font-family: var(--serif);
+    font-size: 54px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--dourado);
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--dourado);
+    margin-bottom: 8px;
+  }
+  .etapa h3 { font-family: var(--sans); font-size: 16px; font-weight: 500; color: var(--cafe); }
+  .etapa p { font-size: 15px; color: var(--tinta-suave); }
+
+  /* Documentos */
+  .documentos {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .lista-docs { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 40px; }
+  .lista-docs li {
+    break-inside: avoid;
+    position: relative;
+    padding: 12px 0 12px 28px;
+    border-bottom: 1px solid var(--linha);
+    font-size: 15px;
+  }
+  .lista-docs li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 21px;
+    width: 12px;
+    height: 7px;
+    border-left: 1.5px solid var(--dourado);
+    border-bottom: 1.5px solid var(--dourado);
+    transform: rotate(-45deg);
+  }
+  .destaque {
+    margin-top: 28px;
+    padding: 20px 22px;
+    background: var(--papel);
+    border-left: 3px solid var(--dourado);
+    font-size: 15px;
+  }
+
+  /* Sobre */
+  .sobre {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .monograma {
+    aspect-ratio: 4 / 5;
+    max-width: 100%;
+    background: var(--cafe);
+    display: grid;
+    place-items: center;
+    position: relative;
+  }
+  .monograma::before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(201, 174, 140, 0.45);
+  }
+  .monograma span {
+    font-family: var(--serif);
+    font-size: 110px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--dourado-claro);
+  }
+  .sobre__texto { display: grid; gap: 18px; max-width: 38em; }
+  .sobre__texto p:not(.rotulo) { color: var(--tinta-suave); }
+  .credencial {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    padding-top: 18px;
+    border-top: 1px solid var(--linha);
+    font-size: 14px;
+  }
+  .credencial strong { font-weight: 500; color: var(--cafe); }
+
+  /* Perguntas */
+  .perguntas { display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start; }
+  .faq details { border-bottom: 1px solid var(--linha); }
+  .faq details:first-child { border-top: 1px solid var(--linha); }
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding-block: 20px;
+    font-weight: 400;
+    font-size: 17px;
+    color: var(--cafe);
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+";
+    font-family: var(--serif);
+    font-size: 28px;
+    line-height: 1;
+    color: var(--dourado);
+    transition: transform .2s ease;
+    flex: none;
+  }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details p { padding-bottom: 22px; color: var(--tinta-suave); font-size: 15px; max-width: 40em; }
+
+  /* Chamada final */
+  .chamada { background: var(--cafe-escuro); color: var(--creme); text-align: left; }
+  .chamada .envoltorio {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding-block: 72px;
+  }
+  .chamada h2 { color: var(--papel); }
+  .chamada p { margin-top: 12px; color: rgba(241, 225, 209, 0.78); max-width: 34em; }
+
+  /* Rodapé */
+  .rodape { background: var(--papel); padding-block: 44px 40px; font-size: 13px; color: var(--tinta-suave); }
+  .rodape .envoltorio { display: grid; gap: 22px; justify-items: center; text-align: center; }
+  .rodape__linha { width: 66%; max-width: 520px; height: 1px; background: var(--dourado); }
+  .rodape__contatos { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 26px; color: var(--cafe); }
+  .rodape__contatos a { text-decoration: none; }
+  .rodape__contatos a:hover { text-decoration: underline; }
+  .rodape__aviso { max-width: 52em; font-size: 12px; }
+
+  @media (max-width: 960px) {
+    .abertura .envoltorio { grid-template-columns: 1fr; gap: 48px; padding-block: 64px 72px; }
+    .temas { grid-template-columns: repeat(2, 1fr); }
+    .etapas { grid-template-columns: repeat(2, 1fr); gap: 40px 32px; }
+    .documentos, .perguntas { grid-template-columns: 1fr; gap: 40px; }
+    .sobre { grid-template-columns: 220px 1fr; gap: 40px; }
+    .menu a:not(.botao) { display: none; }
+  }
+  @media (max-width: 640px) {
+    .envoltorio { padding-inline: 18px; }
+    .secao { padding-block: 64px; }
+    .temas { grid-template-columns: 1fr; }
+    .etapas { grid-template-columns: 1fr; }
+    .lista-docs { columns: 1; }
+    .sobre { grid-template-columns: 1fr; }
+    .monograma { max-width: 200px; }
+    .ficha { padding: 26px 20px 20px; }
+    .ficha__item { grid-template-columns: 88px 1fr; gap: 14px; }
+    .ficha dt { font-size: 24px; }
+    .marca__nome { font-size: 14px; letter-spacing: 0.22em; }
+    .marca__cargo { letter-spacing: 0.32em; }
+    .menu .botao span { display: none; }
+    .menu .botao { padding: 10px 12px; }
+    .abertura__acoes .botao { width: 100%; justify-content: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="faixa" aria-hidden="true"></div>
+
+<header class="cabecalho">
+  <div class="envoltorio">
+    <a class="marca" href="#inicio" aria-label="Nayara Tonete Advogada, início">
+      <span class="marca__nome">NAYARA TONETE</span>
+      <span class="marca__cargo">ADVOGADA</span>
+    </a>
+    <nav class="menu" aria-label="Seções da página">
+      <a href="#temas">Temas</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#perguntas">Perguntas</a>
+      <a class="botao" href="https://wa.me/5531996936688" target="_blank" rel="noopener" aria-label="Tire suas dúvidas pelo WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.9-4.45 9.9-9.91A9.86 9.86 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.99-1.23a7.48 7.48 0 0 1-1.38-1.72c-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48a.92.92 0 0 0-.66.31c-.23.25-.87.85-.87 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
+        <span>Fale conosco</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <section class="abertura" aria-labelledby="titulo-principal">
+    <div class="envoltorio">
+      <div>
+        <p class="rotulo">Imposto de Renda · Pessoa Física</p>
+        <h1 id="titulo-principal">Imposto de Renda com <em>orientação jurídica</em>, do primeiro documento à resposta à Receita.</h1>
+        <p class="abertura__texto">Atuação em direito tributário para quem recebeu uma notificação, tem dúvida sobre isenção ou dedução, ou quer entender se um valor pago a mais pode ser restituído.</p>
+        <div class="abertura__acoes">
+          <a class="botao" href="https://wa.me/5531996936688" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.9-4.45 9.9-9.91A9.86 9.86 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.99-1.23a7.48 7.48 0 0 1-1.38-1.72c-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48a.92.92 0 0 0-.66.31c-.23.25-.87.85-.87 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
+            Tire suas dúvidas pelo WhatsApp
+          </a>
+          <a class="botao botao--contorno" href="#temas">Ver temas</a>
+        </div>
+        <p class="abertura__aviso">Cada caso depende de análise individual dos documentos.</p>
+      </div>
+
+      <aside class="ficha" aria-labelledby="ficha-titulo">
+        <p class="rotulo ficha__titulo" id="ficha-titulo">O que diz a lei</p>
+        <dl>
+          <div class="ficha__item">
+            <dt>30<small>dias</small></dt>
+            <dd>Prazo para apresentar impugnação a uma notificação de lançamento, contado da ciência.<cite>Decreto 70.235/1972, art. 15</cite></dd>
+          </div>
+          <div class="ficha__item">
+            <dt>5<small>anos</small></dt>
+            <dd>Prazo para pedir a restituição de tributo pago indevidamente ou a maior.<cite>Código Tributário Nacional, art. 168</cite></dd>
+          </div>
+          <div class="ficha__item">
+            <dt>180<small>dias</small></dt>
+            <dd>Prazo para aplicar o valor da venda de um imóvel residencial na compra de outro, com isenção do ganho de capital.<cite>Lei 11.196/2005, art. 39</cite></dd>
+          </div>
+        </dl>
+        <p class="ficha__nota">Informação geral. A contagem e a aplicação de cada prazo dependem do caso concreto.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="secao" id="temas" aria-labelledby="temas-titulo">
+    <div class="envoltorio">
+      <div class="secao__topo">
+        <p class="rotulo">Temas de atuação</p>
+        <h2 id="temas-titulo">Situações de Imposto de Renda que pedem um olhar jurídico</h2>
+        <p>Nem toda questão de IR se resolve preenchendo a declaração. Quando há notificação, isenção prevista em lei ou tese discutida nos tribunais, a análise é jurídica.</p>
+      </div>
+
+      <div class="temas">
+        <article class="tema">
+          <span class="tema__base">Decreto 70.235/1972</span>
+          <h3>Malha fina e notificações da Receita</h3>
+          <p>Leitura do termo de intimação ou da notificação de lançamento, organização dos comprovantes e resposta dentro do prazo, pela via administrativa.</p>
+        </article>
+        <article class="tema">
+          <span class="tema__base">Lei 7.713/1988, art. 6º, XIV</span>
+          <h3>Isenção por doença grave</h3>
+          <p>Aposentados, pensionistas e reformados com as doenças previstas em lei podem ter isenção sobre esses rendimentos. Entenda os requisitos e o laudo exigido.</p>
+        </article>
+        <article class="tema">
+          <span class="tema__base">TNU, Tema 324</span>
+          <h3>Escola de pessoa com deficiência</h3>
+          <p>Há entendimento judicial de que a escola de pessoa com deficiência pode ser tratada como despesa médica. A Receita ainda não o aplica; cada família precisa de análise própria.</p>
+        </article>
+        <article class="tema">
+          <span class="tema__base">CTN, arts. 165 e 168</span>
+          <h3>Pagamento indevido e restituição</h3>
+          <p>Entenda quando um valor pago a mais ou retido indevidamente pode ser restituído, e qual caminho se aplica: pedido administrativo ou ação judicial.</p>
+        </article>
+        <article class="tema">
+          <span class="tema__base">Lei 7.713/1988 e Lei 11.196/2005</span>
+          <h3>Ganho de capital</h3>
+          <p>Venda de imóvel, de participação societária ou de outros bens: hipóteses de isenção, reinvestimento e apuração do imposto devido.</p>
+        </article>
+        <article class="tema">
+          <span class="tema__base">Declarações e espólio</span>
+          <h3>Regularização de pendências</h3>
+          <p>Declarações em atraso, retificação, CPF pendente de regularização e obrigações do espólio após o falecimento de um familiar.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--creme" id="como-funciona" aria-labelledby="como-titulo">
+    <div class="envoltorio">
+      <div class="secao__topo">
+        <p class="rotulo">Como funciona</p>
+        <h2 id="como-titulo">Do primeiro contato à orientação por escrito</h2>
+      </div>
+      <ol class="etapas">
+        <li class="etapa">
+          <h3>Contato inicial</h3>
+          <p>Você conta a situação pelo WhatsApp: o que aconteceu, qual ano e se há algum prazo correndo.</p>
+        </li>
+        <li class="etapa">
+          <h3>Envio dos documentos</h3>
+          <p>Indicamos quais documentos são necessários para entender o caso, sem pedir nada além do que a análise exige.</p>
+        </li>
+        <li class="etapa">
+          <h3>Análise individual</h3>
+          <p>A advogada examina as declarações, a notificação ou os comprovantes e a legislação que se aplica.</p>
+        </li>
+        <li class="etapa">
+          <h3>Orientação</h3>
+          <p>Você recebe a explicação dos caminhos possíveis, dos riscos e dos próximos passos, para decidir com clareza.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="secao" aria-labelledby="docs-titulo">
+    <div class="envoltorio documentos">
+      <div class="secao__topo" style="margin-bottom:0">
+        <p class="rotulo">Para a análise</p>
+        <h2 id="docs-titulo">Documentos que costumam ser pedidos</h2>
+        <p>A lista varia conforme o tema. Estes são os mais comuns e ajudam a adiantar a conversa.</p>
+      </div>
+      <div>
+        <ul class="lista-docs">
+          <li>Declarações de IR dos últimos anos e recibos de entrega</li>
+          <li>Notificação ou termo de intimação da Receita</li>
+          <li>Informes de rendimentos</li>
+          <li>Comprovantes de despesas médicas e de educação</li>
+          <li>Laudo médico, quando o tema for isenção ou deficiência</li>
+          <li>Escritura, contrato ou recibo de venda de bens</li>
+          <li>Extrato do e-CAC com pendências</li>
+          <li>Documento de identidade e CPF</li>
+        </ul>
+        <p class="destaque">Se houver uma notificação com prazo, mencione isso logo no primeiro contato. O prazo para responder à Receita costuma ser curto.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--creme" id="sobre" aria-labelledby="sobre-titulo">
+    <div class="envoltorio sobre">
+      <div class="monograma" aria-hidden="true"><span>NT</span></div>
+      <div class="sobre__texto">
+        <p class="rotulo">Quem atende</p>
+        <h2 id="sobre-titulo">Nayara Tonete</h2>
+        <p>Advogada com atuação dedicada ao direito tributário. Atende pessoas físicas em questões de Imposto de Renda, com linguagem clara e atenção a cada documento.</p>
+        <p>O atendimento é pessoal: quem analisa o caso é a própria advogada, que responde pela orientação dada.</p>
+        <div class="credencial">
+          <span><strong>OAB/SP</strong> 479.459</span>
+          <span><strong>Área</strong> Direito tributário</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="perguntas" aria-labelledby="faq-titulo">
+    <div class="envoltorio perguntas">
+      <div class="secao__topo" style="margin-bottom:0">
+        <p class="rotulo">Perguntas frequentes</p>
+        <h2 id="faq-titulo">Dúvidas comuns sobre IR</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Caí na malha fina. Isso quer dizer que vou ser multado?</summary>
+          <p>Não necessariamente. Estar em malha significa que a Receita encontrou uma divergência e quer conferir informações. Muitas vezes a pendência se resolve com retificação ou apresentação de documentos. A multa só vem se houver lançamento, e ele ainda pode ser contestado.</p>
+        </details>
+        <details>
+          <summary>Qual a diferença entre retificar a declaração e impugnar uma notificação?</summary>
+          <p>A retificação corrige a própria declaração enquanto não há lançamento. A impugnação é a defesa apresentada depois que a Receita emite a notificação de lançamento, dentro do prazo de 30 dias da ciência.</p>
+        </details>
+        <details>
+          <summary>Quem tem direito à isenção por doença grave?</summary>
+          <p>A lei prevê isenção sobre proventos de aposentadoria, pensão e reforma de quem tem uma das doenças listadas no art. 6º, XIV, da Lei 7.713/1988. Salário de quem ainda trabalha não entra nessa isenção. O laudo precisa atender às exigências legais, e cada caso deve ser analisado.</p>
+        </details>
+        <details>
+          <summary>A escola do meu filho com deficiência pode ser deduzida integralmente?</summary>
+          <p>Existe decisão da Turma Nacional de Uniformização (Tema 324) nesse sentido, mas a Receita ainda limita a dedução de educação a R$ 3.561,50 por pessoa ao ano. O reconhecimento tem sido buscado na Justiça, e só a análise dos documentos da família indica se esse caminho se aplica.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="chamada" aria-labelledby="chamada-titulo">
+    <div class="envoltorio">
+      <div>
+        <h2 id="chamada-titulo">Ficou com alguma dúvida?</h2>
+        <p>Conte sua situação pelo WhatsApp. A advogada retorna para entender o caso e dizer quais documentos serão necessários.</p>
+      </div>
+      <a class="botao" href="https://wa.me/5531996936688" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.9-4.45 9.9-9.91A9.86 9.86 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.99-1.23a7.48 7.48 0 0 1-1.38-1.72c-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48a.92.92 0 0 0-.66.31c-.23.25-.87.85-.87 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
+        Tire suas dúvidas
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="envoltorio">
+    <div class="marca" aria-hidden="true" style="align-items:center">
+      <span class="marca__nome">NAYARA TONETE</span>
+      <span class="marca__cargo">ADVOGADA</span>
+    </div>
+    <div class="rodape__linha" aria-hidden="true"></div>
+    <div class="rodape__contatos">
+      <span>OAB/SP 479.459</span>
+      <a href="https://wa.me/5531996936688" target="_blank" rel="noopener">WhatsApp (31) 99693-6688</a>
+      <a href="https://www.instagram.com/nayaratonete.adv/" target="_blank" rel="noopener">Instagram @nayaratonete.adv</a>
+    </div>
+    <p class="rodape__aviso">Conteúdo de caráter informativo, conforme o Provimento 205/2021 do Conselho Federal da OAB. Não constitui promessa de resultado. Cada caso depende de análise individual.</p>
+  </div>
+</footer>
+
+</body>
+</html>
