@@ -7,4 +7,4 @@ Páginas da NT Advocacia (Nayara Tonete, advogada, OAB/SP 479.459).
 
 ## Publicação
 
-O site é servido pelo GitHub Pages a partir do branch `main` (pasta raiz). A página da PcD fica em `/escola-pcd/`. O arquivo `.nojekyll` faz o Pages servir os arquivos como estão.
+O site é publicado no GitHub Pages pelo workflow `.github/workflows/pages.yml` a cada push no `main` (em Settings > Pages, a origem deve ser "GitHub Actions"). A página da PcD fica em `/escola-pcd/`. O arquivo `.nojekyll` faz o Pages servir os arquivos como estão.
