@@ -20,6 +20,25 @@
 | **PROF. ADALBERTO** | Professor de Custos | Avatar de professor, camisa, quadro ao fundo | Confuso, desconfiado, sério. |
 | **PRIMO JUNINHO** | Primo que ensina PowerPoint | Avatar adolescente com fone no pescoço | Impaciente, cansado, "não, vô, não é aí". |
 
+### 👴 Aparência do Vô Osvaldo
+
+**Resumo:** um senhor de 76 anos com cara de "já vi de tudo nesse balcão". Arrumado demais para qualquer ocasião, sério por fora e divertido por dentro.
+
+- **Rosto:** redondo, bochechas cheias e rosadas, rugas marcadas na testa e "pés de galinha" de quem sorri com os olhos. Pele clara, um pouco bronzeada de sol.
+- **Cabelo:** grisalho, quase branco, ralo no topo, penteado para trás com gel e com o risco perfeito do lado. Nenhum fio fora do lugar.
+- **Bigode:** grosso, branco e bem aparado. É o orgulho dele.
+- **Sobrancelhas:** grossas, grisalhas e expressivas. Uma sempre levantada quando desconfia de alguma coisa.
+- **Óculos:** armação de metal dourada, estilo anos 80, sempre na ponta do nariz. Ele olha **por cima** das lentes quando dá bronca.
+- **Corpo:** estatura média, barriguinha de quem gosta de linguiça, postura ereta de gerente.
+- **Roupa:** camisa social de manga curta, xadrez miudinho ou azul-clara, **abotoada até o último botão do colarinho**. Uma caneta Bic no bolso da camisa. Calça social bege presa com cinto de couro marrom, puxada um pouco acima do umbigo.
+- **Acessórios:** relógio de pulso dourado antigo, aliança grossa e um celular com capinha de couro de abrir, preso no cinto.
+- **Expressão:** sério e solene, de quem está ditando documento em cartório, com um sorrisinho de canto que entrega que ele está se divertindo.
+- **Versão churrasco:** a mesma camisa social, agora com **óculos escuros espelhados emprestados** por cima dos óculos de grau.
+
+**Prompt para gerar o avatar por IA (HeyGen Photo Avatar / gerador de imagem):**
+
+> Retrato realista de um senhor brasileiro de 76 anos, rosto redondo com bochechas rosadas, cabelo grisalho quase branco penteado para trás com risco lateral, bigode branco grosso e bem aparado, sobrancelhas grossas grisalhas, óculos de armação dourada anos 80 na ponta do nariz, camisa social azul-clara de manga curta abotoada até o colarinho, caneta no bolso da camisa, expressão séria e solene com leve sorriso de canto, olhando direto para a câmera, fundo de sala de casa simples com estante de madeira, luz natural suave, enquadramento do peito para cima, formato vertical.
+
 > 💡 **Dica HeyGen:** se tiver pouco avatar disponível, dá pra fazer com 3 (Narrador, Osvaldo e um "Universitário" que troca de boné/nome na legenda). As falas dos alunos também funcionam só como **balões de WhatsApp na tela com voz em off**.
 
 ---
