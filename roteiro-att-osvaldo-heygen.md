@@ -373,3 +373,14 @@
 > Semestre que vem a turma vai pro oitavo período e já avisou: "O senhor vai junto." Ele confirmou presença no grupo novo antes de todo mundo.
 >
 > O número era errado. O membro... tava certíssimo.
+
+---
+
+## 📱 PERFIL DO TIKTOK DO SEU OSVALDO
+
+- **Nome:** Seu Osvaldo 👴
+- **Usuário:** @att.osvaldo
+- **Bio (limite de 80 caracteres), escolha uma:**
+  1. `76 anos, 40 de balcão. Entrei no grupo errado e fiquei. Att, Osvaldo 👴📊` *(recomendada)*
+  2. `Contador de armazém. Pai do semestre. Dorme, menino. Att, Osvaldo 🧀`
+  3. `Depreciação sempre cai. Na prova e na vida. Att, Osvaldo 🧀📉`
